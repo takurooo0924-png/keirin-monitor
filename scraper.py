@@ -28,34 +28,34 @@ async def fetch_data():
             await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle", timeout=60000)
             await page.wait_for_timeout(5000)
             
-            # デバッグ写真は継続
+            # デバッグ写真は継続（証拠用）
             await page.screenshot(path="debug_kdreams.png", full_page=True)
 
-            soup = BeautifulSoup(await page.content(), "html.parser")
-            blocks = soup.select(".kaisai-list")
+            # Playwrightの機能で直接テキストを引っこ抜く（隙間に強い）
+            blocks = await page.query_selector_all(".kaisai-list")
             log(f"  -> 開催場を {len(blocks)} 件検出")
 
             for block in blocks:
-                track_tag = block.select_one(".velodrome")
+                # 会場名を取得
+                track_tag = await block.query_selector(".velodrome")
                 if not track_tag: continue
-                track_name = track_tag.get_text(strip=True).replace("競輪", "")
+                track_name = (await track_tag.inner_text()).replace("競輪", "").strip()
                 
-                # ブロック内の全テキストを取得（改行や空白を正規化）
-                text = block.get_text(separator=' ', strip=True)
+                # その会場内の全テキストを「そのまま」取得
+                text = await block.inner_text()
                 
-                # 【超強力検索】
-                # 番号: 数字の後に「R」があるもの（間に空白・改行があってもOK）
-                # 時刻: 数字 : 数字 の形式（全角・半角・空白に対応）
+                # 番号: 数字の後に「R」（間に何があってもOK）
                 found_races = re.findall(r'(\d+)\s*R', text)
-                found_times = re.findall(r'(\d{1,2}\s*[:：]\s*\d{2})', text)
+                # 時刻: 数字 記号 数字（全角・半角・空白すべてを個別キャッチ）
+                found_times = re.findall(r'(\d{1,2})\s*[:：]\s*(\d{2})', text)
                 
-                log(f"    - {track_name}: 番号{len(found_races)}件 / 時刻{len(found_times)}件")
+                log(f"    - {track_name}: 番号{len(found_races)} / 時刻{len(found_times)}")
 
-                # 見つかった順番通りにペアにする
+                # 数が合う場合のみ順番にペアリング
                 if len(found_races) > 0 and len(found_races) <= len(found_times):
                     for i in range(len(found_races)):
                         r_num = found_races[i] + "R"
-                        t_str = found_times[i].replace(" ", "").replace("：", ":") # 形式を整える
+                        t_str = f"{found_times[i][0]}:{found_times[i][1]}"
                         
                         races_data.append({
                             "track": track_name, 
@@ -63,4 +63,35 @@ async def fetch_data():
                             "time_str": t_str
                         })
             
-            log(f"  -> 合計 {len(races
+            log(f"  -> 合計 {len(races_data)} 件の抽出に成功")
+
+        except Exception as e:
+            log(f"【実行エラー】: {e}")
+        await browser.close()
+
+    # --- 未来のレースだけを保存 ---
+    parsed_results = []
+    for r in races_data:
+        try:
+            h, m = map(int, r["time_str"].split(':'))
+            dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
+            
+            if dt < now - timedelta(hours=6):
+                dt += timedelta(days=1)
+            
+            if dt > now:
+                parsed_results.append({
+                    "id": f"{r['track']}_{r['race_num']}",
+                    "track": r["track"], "race_num": r["race_num"], "time_str": r["time_str"], "deadline": dt.isoformat()
+                })
+        except:
+            continue
+
+    parsed_results.sort(key=lambda x: x["deadline"])
+    log(f"--- 最終集計: {len(parsed_results)} 件を確定 ---")
+    
+    with open('schedule.json', 'w', encoding='utf-8') as f:
+        json.dump(parsed_results, f, ensure_ascii=False, indent=2)
+
+if __name__ == "__main__":
+    asyncio.run(fetch_data())
