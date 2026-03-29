@@ -23,7 +23,7 @@ jobs:
           playwright install chromium
 
       - name: Run scraper
-        run: python scraper.py
+        run: python -u scraper.py
 
       - name: Upload debug screenshots
         if: always()
