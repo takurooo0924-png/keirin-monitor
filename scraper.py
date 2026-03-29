@@ -12,7 +12,7 @@ def log(msg):
 async def fetch_data():
     jst = pytz.timezone('Asia/Tokyo')
     now = datetime.now(jst)
-    log(f"--- 3/30 デバッグ開始: {now.strftime('%H:%M:%S')} ---")
+    log(f"--- 3/30 修正スキャン開始: {now.strftime('%H:%M:%S')} ---")
     
     races_data = []
 
@@ -25,64 +25,57 @@ async def fetch_data():
         page = await context.new_page()
 
         try:
-            log("【競輪】Kドリームスへ潜入中...")
+            log("【競輪】Kドリームスへアクセス中...")
             await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle", timeout=60000)
-            await page.wait_for_timeout(10000) # 読み込みをしっかり待つ
+            await page.wait_for_timeout(5000)
             
-            # 証拠写真を撮影
-            await page.screenshot(path="debug_kdreams.png", full_page=True)
-            log("  -> 画面撮影完了 (debug_kdreams.png)")
-
             soup = BeautifulSoup(await page.content(), "html.parser")
-            # 会場ごとのブロックを取得
             blocks = soup.select(".kaisai-list")
-            log(f"  -> 発見した開催場数: {len(blocks)}")
 
             for block in blocks:
                 track_tag = block.select_one(".velodrome")
                 if not track_tag: continue
                 track_name = track_tag.get_text(strip=True).replace("競輪", "")
                 
-                # 行ごとにスキャン（レース番号と時刻のペアを探す）
-                rows = block.select("tr")
-                for row in rows:
-                    txt = row.get_text(separator=' ', strip=True)
-                    # 「数字R」と「00:00」が同じ行にあるものを抽出
-                    m = re.search(r'(\d+R).*?(\d{1,2}:\d{2})', txt)
-                    if m and "結果" not in txt and "終了" not in txt:
-                        races_data.append({
-                            "track": track_name, 
-                            "race_num": m.group(1), 
-                            "time_str": m.group(2)
-                        })
+                # ブロック内の全てのテキストを取得
+                full_text = block.get_text(separator=' ', strip=True)
+                
+                # レース番号(1Rなど)と時刻(00:00)をそれぞれ全部抽出
+                r_list = re.findall(r'(\d+R)', full_text)
+                t_list = re.findall(r'(\d{1,2}:\d{2})', full_text)
+                
+                # 番号と時刻の数が一致する場合のみペアにする
+                # (Kドリームスの構造上、順番に並んでいるのでこれで正確に取れます)
+                if len(r_list) > 0 and len(r_list) == len(t_list):
+                    for r_num, t_str in zip(r_list, t_list):
+                        # そのレースが「終了」や「結果」でないか周辺をチェック
+                        # (簡易的に、テキスト全体からそのレースが過去でないか後ほど時間で判定)
+                        races_data.append({"track": track_name, "race_num": r_num, "time_str": t_str})
             
-            log(f"  -> 捕捉件数: {len(races_data)} 件")
+            log(f"  -> 抽出成功: {len(races_data)} 件の候補を発見")
 
         except Exception as e:
             log(f"【エラー】: {e}")
         await browser.close()
 
-    # --- 未来のレースだけを抽出 ---
+    # --- 未来のレースだけを保存 ---
     parsed_results = []
     for r in races_data:
         h, m = map(int, r["time_str"].split(':'))
         dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
         
-        # 深夜実行時、お昼のレースを「昨日のレース（過去）」と判定しないための補正
+        # 3/30 02:30に実行して、10:00のレースを「今日の10:00」と正しく判定
         if dt < now - timedelta(hours=6):
             dt += timedelta(days=1)
         
         if dt > now:
             parsed_results.append({
                 "id": f"{r['track']}_{r['race_num']}",
-                "track": r["track"], 
-                "race_num": r["race_num"], 
-                "time_str": r["time_str"], 
-                "deadline": dt.isoformat()
+                "track": r["track"], "race_num": r["race_num"], "time_str": r["time_str"], "deadline": dt.isoformat()
             })
 
     parsed_results.sort(key=lambda x: x["deadline"])
-    log(f"--- 最終集計: {len(parsed_results)} 件を保存 ---")
+    log(f"--- 最終集計: {len(parsed_results)} 件を保存します ---")
     
     with open('schedule.json', 'w', encoding='utf-8') as f:
         json.dump(parsed_results, f, ensure_ascii=False, indent=2)
