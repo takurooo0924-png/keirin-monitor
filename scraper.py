@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright
 def log(msg):
     print(msg, flush=True)
 
-# 競輪：これまでの成功ロジックをそのまま維持
+# 競輪：成功実績のあるコードを維持
 async def fetch_keirin(page):
     races = []
     try:
@@ -51,9 +51,7 @@ async def fetch_auto(page):
             for r in range(1, 13):
                 url = f"https://autorace.jp/race_info/Program/{key}/{today_str}_{r}/program"
                 await page.goto(url, wait_until="domcontentloaded")
-                
                 try:
-                    # 投票締切の文字が出るまで待機
                     await page.wait_for_selector("text=投票締切", timeout=3000)
                 except:
                     if r > 1: break
@@ -61,9 +59,47 @@ async def fetch_auto(page):
                 
                 title = await page.title()
                 track_name = title.split('｜')[1].replace('オート', '').strip() if '｜' in title else key
-                
                 body_text = await page.inner_text("body")
                 match_time = re.search(r'投票締切\s*(\d{1,2}:\d{2})', body_text)
                 
                 if match_time:
-                    races.append({"track": track_name, "race_
+                    races.append({"track": track_name, "race_num": f"{r}R", "time": match_time.group(1)})
+                    log(f"  {track_name} {r}R: {match_time.group(1)} 取得")
+                else:
+                    if r > 1: break
+    except Exception as e: log(f"オートエラー: {e}")
+    return races
+
+async def main():
+    jst = pytz.timezone('Asia/Tokyo')
+    now = datetime.now(jst)
+    all_races = []
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0")
+        page = await context.new_page()
+        all_races.extend(await fetch_keirin(page))
+        all_races.extend(await fetch_auto(page))
+        await browser.close()
+
+    parsed = []
+    seen = set()
+    for r in all_races:
+        key = f"{r['track']}_{r['race_num']}"
+        if key in seen: continue
+        try:
+            h, m = map(int, r["time"].split(':'))
+            dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
+            if dt < now - timedelta(hours=6): dt += timedelta(days=1)
+            if dt > now:
+                parsed.append({"id": key, "track": r["track"], "race_num": r["race_num"], "time_str": r["time"], "deadline": dt.isoformat()})
+                seen.add(key)
+        except: continue
+
+    parsed.sort(key=lambda x: x["deadline"])
+    with open('schedule.json', 'w', encoding='utf-8') as f:
+        json.dump(parsed, f, ensure_ascii=False, indent=2)
+    log(f"保存完了: {len(parsed)} 件")
+
+if __name__ == "__main__":
+    asyncio.run(main())
