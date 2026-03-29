@@ -49,8 +49,8 @@
     "deadline": "2026-03-30T10:50:00+09:00"
   },
   {
-    "id": "hamamatsu_1R",
-    "track": "hamamatsu",
+    "id": "浜松_1R",
+    "track": "浜松",
     "race_num": "1R",
     "time_str": "10:54",
     "deadline": "2026-03-30T10:54:00+09:00"
@@ -70,8 +70,8 @@
     "deadline": "2026-03-30T11:13:00+09:00"
   },
   {
-    "id": "hamamatsu_2R",
-    "track": "hamamatsu",
+    "id": "浜松_2R",
+    "track": "浜松",
     "race_num": "2R",
     "time_str": "11:19",
     "deadline": "2026-03-30T11:19:00+09:00"
@@ -91,8 +91,8 @@
     "deadline": "2026-03-30T11:39:00+09:00"
   },
   {
-    "id": "hamamatsu_3R",
-    "track": "hamamatsu",
+    "id": "浜松_3R",
+    "track": "浜松",
     "race_num": "3R",
     "time_str": "11:45",
     "deadline": "2026-03-30T11:45:00+09:00"
@@ -112,8 +112,8 @@
     "deadline": "2026-03-30T12:05:00+09:00"
   },
   {
-    "id": "hamamatsu_4R",
-    "track": "hamamatsu",
+    "id": "浜松_4R",
+    "track": "浜松",
     "race_num": "4R",
     "time_str": "12:13",
     "deadline": "2026-03-30T12:13:00+09:00"
@@ -140,8 +140,8 @@
     "deadline": "2026-03-30T12:44:00+09:00"
   },
   {
-    "id": "hamamatsu_5R",
-    "track": "hamamatsu",
+    "id": "浜松_5R",
+    "track": "浜松",
     "race_num": "5R",
     "time_str": "12:44",
     "deadline": "2026-03-30T12:44:00+09:00"
@@ -161,8 +161,8 @@
     "deadline": "2026-03-30T13:10:00+09:00"
   },
   {
-    "id": "hamamatsu_6R",
-    "track": "hamamatsu",
+    "id": "浜松_6R",
+    "track": "浜松",
     "race_num": "6R",
     "time_str": "13:14",
     "deadline": "2026-03-30T13:14:00+09:00"
@@ -182,8 +182,8 @@
     "deadline": "2026-03-30T13:36:00+09:00"
   },
   {
-    "id": "hamamatsu_7R",
-    "track": "hamamatsu",
+    "id": "浜松_7R",
+    "track": "浜松",
     "race_num": "7R",
     "time_str": "13:44",
     "deadline": "2026-03-30T13:44:00+09:00"
@@ -203,8 +203,8 @@
     "deadline": "2026-03-30T14:03:00+09:00"
   },
   {
-    "id": "hamamatsu_8R",
-    "track": "hamamatsu",
+    "id": "浜松_8R",
+    "track": "浜松",
     "race_num": "8R",
     "time_str": "14:15",
     "deadline": "2026-03-30T14:15:00+09:00"
@@ -231,8 +231,8 @@
     "deadline": "2026-03-30T14:45:00+09:00"
   },
   {
-    "id": "hamamatsu_9R",
-    "track": "hamamatsu",
+    "id": "浜松_9R",
+    "track": "浜松",
     "race_num": "9R",
     "time_str": "14:46",
     "deadline": "2026-03-30T14:46:00+09:00"
@@ -252,8 +252,8 @@
     "deadline": "2026-03-30T15:13:00+09:00"
   },
   {
-    "id": "hamamatsu_10R",
-    "track": "hamamatsu",
+    "id": "浜松_10R",
+    "track": "浜松",
     "race_num": "10R",
     "time_str": "15:18",
     "deadline": "2026-03-30T15:18:00+09:00"
@@ -280,8 +280,8 @@
     "deadline": "2026-03-30T15:49:00+09:00"
   },
   {
-    "id": "hamamatsu_11R",
-    "track": "hamamatsu",
+    "id": "浜松_11R",
+    "track": "浜松",
     "race_num": "11R",
     "time_str": "15:54",
     "deadline": "2026-03-30T15:54:00+09:00"
@@ -315,8 +315,8 @@
     "deadline": "2026-03-30T16:31:00+09:00"
   },
   {
-    "id": "hamamatsu_12R",
-    "track": "hamamatsu",
+    "id": "浜松_12R",
+    "track": "浜松",
     "race_num": "12R",
     "time_str": "16:33",
     "deadline": "2026-03-30T16:33:00+09:00"
@@ -378,8 +378,8 @@
     "deadline": "2026-03-30T19:55:00+09:00"
   },
   {
-    "id": "iizuka_1R",
-    "track": "iizuka",
+    "id": "飯塚_1R",
+    "track": "飯塚",
     "race_num": "1R",
     "time_str": "20:01",
     "deadline": "2026-03-30T20:01:00+09:00"
@@ -392,8 +392,8 @@
     "deadline": "2026-03-30T20:25:00+09:00"
   },
   {
-    "id": "iizuka_2R",
-    "track": "iizuka",
+    "id": "飯塚_2R",
+    "track": "飯塚",
     "race_num": "2R",
     "time_str": "20:28",
     "deadline": "2026-03-30T20:28:00+09:00"
@@ -420,8 +420,8 @@
     "deadline": "2026-03-30T20:55:00+09:00"
   },
   {
-    "id": "iizuka_3R",
-    "track": "iizuka",
+    "id": "飯塚_3R",
+    "track": "飯塚",
     "race_num": "3R",
     "time_str": "20:55",
     "deadline": "2026-03-30T20:55:00+09:00"
@@ -441,8 +441,8 @@
     "deadline": "2026-03-30T21:15:00+09:00"
   },
   {
-    "id": "iizuka_4R",
-    "track": "iizuka",
+    "id": "飯塚_4R",
+    "track": "飯塚",
     "race_num": "4R",
     "time_str": "21:22",
     "deadline": "2026-03-30T21:22:00+09:00"
@@ -469,8 +469,8 @@
     "deadline": "2026-03-30T21:45:00+09:00"
   },
   {
-    "id": "iizuka_5R",
-    "track": "iizuka",
+    "id": "飯塚_5R",
+    "track": "飯塚",
     "race_num": "5R",
     "time_str": "21:49",
     "deadline": "2026-03-30T21:49:00+09:00"
@@ -497,8 +497,8 @@
     "deadline": "2026-03-30T22:15:00+09:00"
   },
   {
-    "id": "iizuka_6R",
-    "track": "iizuka",
+    "id": "飯塚_6R",
+    "track": "飯塚",
     "race_num": "6R",
     "time_str": "22:17",
     "deadline": "2026-03-30T22:17:00+09:00"
@@ -525,8 +525,8 @@
     "deadline": "2026-03-30T22:45:00+09:00"
   },
   {
-    "id": "iizuka_7R",
-    "track": "iizuka",
+    "id": "飯塚_7R",
+    "track": "飯塚",
     "race_num": "7R",
     "time_str": "22:45",
     "deadline": "2026-03-30T22:45:00+09:00"
@@ -546,8 +546,8 @@
     "deadline": "2026-03-30T23:05:00+09:00"
   },
   {
-    "id": "iizuka_8R",
-    "track": "iizuka",
+    "id": "飯塚_8R",
+    "track": "飯塚",
     "race_num": "8R",
     "time_str": "23:13",
     "deadline": "2026-03-30T23:13:00+09:00"
@@ -567,8 +567,8 @@
     "deadline": "2026-03-30T23:25:00+09:00"
   },
   {
-    "id": "iizuka_9R",
-    "track": "iizuka",
+    "id": "飯塚_9R",
+    "track": "飯塚",
     "race_num": "9R",
     "time_str": "23:43",
     "deadline": "2026-03-30T23:43:00+09:00"
