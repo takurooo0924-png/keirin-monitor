@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright
 def log(msg):
     print(msg, flush=True)
 
-# 競輪：成功実績のあるコードを完全に維持
+# 競輪：これまでの成功ロジックをそのまま維持
 async def fetch_keirin(page):
     races = []
     try:
@@ -29,7 +29,7 @@ async def fetch_keirin(page):
     except Exception as e: log(f"競輪エラー: {e}")
     return races
 
-# オートレース：公式サイトから「投票締切」を現物抽出
+# オート：公式サイトから「投票締切」の数字をそのまま抽出
 async def fetch_auto(page):
     races = []
     try:
@@ -37,26 +37,33 @@ async def fetch_auto(page):
         jst = pytz.timezone('Asia/Tokyo')
         today_str = datetime.now(jst).strftime('%Y-%m-%d')
         
-        # 1. 開催場を特定（トップページからリンクを全スキャン）
         await page.goto("https://autorace.jp/", wait_until="networkidle")
         content = await page.content()
         track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
         
         if not track_keys:
-            log("場名が見つかりません。ネットスタジアム側を確認します。")
             await page.goto("https://autorace.jp/netstadium/", wait_until="networkidle")
             content = await page.content()
             track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
 
         for key in track_keys:
-            log(f"--- {key} の番組表をスキャン ---")
-            # 1Rから順に確認
+            log(f"--- {key} の番組表を確認 ---")
             for r in range(1, 13):
                 url = f"https://autorace.jp/race_info/Program/{key}/{today_str}_{r}/program"
                 await page.goto(url, wait_until="domcontentloaded")
                 
-                # 「投票締切」という文字が出るまで最大5秒待機（遅延対策）
                 try:
-                    await page.wait_for_selector("text=投票締切", timeout=5000)
+                    # 投票締切の文字が出るまで待機
+                    await page.wait_for_selector("text=投票締切", timeout=3000)
                 except:
-                    # 見つからなければ、そのレース（または場）は
+                    if r > 1: break
+                    continue
+                
+                title = await page.title()
+                track_name = title.split('｜')[1].replace('オート', '').strip() if '｜' in title else key
+                
+                body_text = await page.inner_text("body")
+                match_time = re.search(r'投票締切\s*(\d{1,2}:\d{2})', body_text)
+                
+                if match_time:
+                    races.append({"track": track_name, "race_
