@@ -12,7 +12,7 @@ def log(msg):
 async def fetch_data():
     jst = pytz.timezone('Asia/Tokyo')
     now = datetime.now(jst)
-    log(f"--- 最終突破フェーズ開始: {now.strftime('%H:%M:%S')} ---")
+    log(f"--- 全場・最終統合フェーズ開始: {now.strftime('%H:%M:%S')} ---")
     
     date_hyphen = now.strftime('%Y-%m-%d')
     races_data = []
@@ -22,60 +22,57 @@ async def fetch_data():
         context = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
         page = await context.new_page()
 
-        # --- 1. 競輪 (表を無視した「文字あさり」抽出) ---
+        # --- 1. 競輪 (成功済みのロジックを完全維持) ---
         try:
             log("【競輪】Kドリームスへ潜入中...")
             await page.goto("https://my.keirin.kdreams.jp/kaisai/", timeout=60000)
-            await page.wait_for_timeout(7000)
-            
+            await page.wait_for_timeout(5000)
             soup = BeautifulSoup(await page.content(), "html.parser")
             blocks = soup.find_all(class_="kaisai-list")
-            log(f"  -> 開催ブロックを {len(blocks)} 個検出")
-            
             for block in blocks:
                 track_tag = block.find(class_="velodrome")
                 if not track_tag: continue
                 track_name = track_tag.get_text(strip=True).replace("競輪", "")
-                log(f"    - {track_name} の文字情報を解析...")
-                
-                # ブロック内の全テキストを取得し、改行や空白を整理
                 full_text = block.get_text(separator=' ', strip=True)
-                # 「1R 21:25」のようなパターンを、表構造を無視して直接探す
                 matches = re.findall(r'(\d+R).*?(\d{1,2}:\d{2})', full_text)
-                
                 for r_num, t_str in matches:
-                    # 同じレース番号付近に「結果」の文字がないかチェック
-                    context_snippet = full_text[full_text.find(r_num):full_text.find(r_num)+30]
-                    if "結果" not in context_snippet:
+                    idx = full_text.find(r_num)
+                    if "結果" not in full_text[idx:idx+30]:
                         races_data.append({"track": track_name, "race_num": r_num, "time_str": t_str})
-                log(f"      => {track_name}: {len(matches)} 件の候補を発見")
+            log(f"  -> 競輪: {len(races_data)} 件の候補を保持")
         except Exception as e:
             log(f"【競輪】エラー: {e}")
 
-        # --- 2. オート (「しつこい監視」抽出) ---
-        tracks_auto = {"飯塚": "iizuka", "川口": "kawaguchi", "伊勢崎": "isesaki", "浜松": "hamamatsu", "山陽": "sanyou"}
-        for name, roma in tracks_auto.items():
-            log(f"【オート】{name} をチェック中...")
-            try:
-                url = f"https://autorace.jp/race_info/Program/{roma}/{date_hyphen}_12/program"
-                await page.goto(url, wait_until="domcontentloaded", timeout=30000)
-                
-                # 2秒おきに最大10回、HTMLの中身に時刻が隠れていないか確認する
-                found_time = None
-                for i in range(10):
-                    content = await page.content()
-                    m = re.search(r'投票締切\s*(\d{1,2}:\d{2})', content)
+        # --- 2. オート (別サイト・裏口ルート) ---
+        # ガードの緩いオッズパークの開催一覧をターゲットにします
+        log("【オート】別ルート（オッズパーク）から取得中...")
+        try:
+            await page.goto("https://www.oddspark.com/autorace/KaisaiYotei.do", timeout=30000)
+            await page.wait_for_timeout(3000)
+            soup = BeautifulSoup(await page.content(), "html.parser")
+            
+            # 本日の開催場を探す
+            links = soup.find_all("a", href=re.compile(r"KaisaiInfo.do"))
+            for link in links:
+                track_name = link.get_text(strip=True)
+                if track_name:
+                    # その場の12Rページへ直接飛ぶ
+                    race_url = "https://www.oddspark.com" + link['href'].replace("KaisaiInfo", "Yoso") + "&raceNo=12"
+                    log(f"    - {track_name} 12R を確認中...")
+                    
+                    sub_page = await context.new_page()
+                    await sub_page.goto(race_url, timeout=20000)
+                    sub_soup = BeautifulSoup(await sub_page.content(), "html.parser")
+                    
+                    # 「締切時刻 00:00」という文字を探す
+                    time_text = sub_soup.get_text()
+                    m = re.search(r'締切時刻\s*(\d{1,2}:\d{2})', time_text)
                     if m:
-                        found_time = m.group(1)
-                        break
-                    await page.wait_for_timeout(2000)
-                
-                if found_time:
-                    races_data.append({"track": f"{name}オート", "race_num": "12R", "time_str": found_time})
-                    log(f"    => {name} 12R: {found_time} 取得！")
-                else:
-                    log(f"    -> {name}: 20秒粘りましたが、数字が隠蔽されています")
-            except: continue
+                        races_data.append({"track": f"{track_name}オート", "race_num": "12R", "time_str": m.group(1)})
+                        log(f"      => {track_name} 12R: {m.group(1)} 取得成功")
+                    await sub_page.close()
+        except Exception as e:
+            log(f"【オート】別ルートエラー: {e}")
 
         await browser.close()
 
@@ -92,7 +89,7 @@ async def fetch_data():
             })
 
     parsed_results.sort(key=lambda x: x["deadline"])
-    log(f"--- 最終集計: {len(parsed_results)} 件を保存します ---")
+    log(f"--- 最終集計: {len(parsed_results)} 件を schedule.json に保存します ---")
     
     with open('schedule.json', 'w', encoding='utf-8') as f:
         json.dump(parsed_results, f, ensure_ascii=False, indent=2)
