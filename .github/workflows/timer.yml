@@ -1,0 +1,46 @@
+name: Keirin Auto Scraper
+
+# いつ動かすかの設定
+on:
+  schedule:
+    - cron: '*/30 * * * *' # 30分に1回自動実行
+  workflow_dispatch: # 手動でテスト実行するためのボタン
+
+# ファイルを上書き保存するための権限設定
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. あなたの部屋（リポジトリ）のファイルを読み込む
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Pythonを準備する
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3. 必要な道具（Playwrightなど）をインストールする
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install playwright pandas beautifulsoup4 lxml pytz
+        playwright install chromium
+
+    # 4. さきほど作った頭脳（scraper.py）を実行する
+    - name: Run scraper
+      run: python scraper.py
+
+    # 5. 取得した締切時間（schedule.json）を上書き保存する
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add schedule.json
+        git commit -m "最新の締切時間を更新" || exit 0
+        git push
