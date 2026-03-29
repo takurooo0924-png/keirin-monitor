@@ -8,7 +8,16 @@ from playwright.async_api import async_playwright
 def log(msg):
     print(msg, flush=True)
 
-# 競輪：成功実績のあるコードを維持
+# オートレース場名の漢字変換テーブル
+AUTO_TRACK_MAP = {
+    "kawaguchi": "川口",
+    "isesaki": "伊勢崎",
+    "hamamatsu": "浜松",
+    "sanyo": "山陽",
+    "iizuka": "飯塚"
+}
+
+# 競輪：成功ロジックを完全に維持
 async def fetch_keirin(page):
     races = []
     try:
@@ -29,7 +38,7 @@ async def fetch_keirin(page):
     except Exception as e: log(f"競輪エラー: {e}")
     return races
 
-# オート：公式サイトから「投票締切」の数字をそのまま抽出
+# オート：公式サイトから「投票締切」を現物抽出し、漢字に変換
 async def fetch_auto(page):
     races = []
     try:
@@ -47,7 +56,10 @@ async def fetch_auto(page):
             track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
 
         for key in track_keys:
-            log(f"--- {key} の番組表を確認 ---")
+            # アルファベットのキー（iizuka等）を漢字（飯塚等）に変換。辞書になければそのまま使用。
+            display_name = AUTO_TRACK_MAP.get(key.lower(), key)
+            log(f"--- {display_name} ({key}) の番組表を確認 ---")
+            
             for r in range(1, 13):
                 url = f"https://autorace.jp/race_info/Program/{key}/{today_str}_{r}/program"
                 await page.goto(url, wait_until="domcontentloaded")
@@ -57,14 +69,16 @@ async def fetch_auto(page):
                     if r > 1: break
                     continue
                 
-                title = await page.title()
-                track_name = title.split('｜')[1].replace('オート', '').strip() if '｜' in title else key
                 body_text = await page.inner_text("body")
                 match_time = re.search(r'投票締切\s*(\d{1,2}:\d{2})', body_text)
                 
                 if match_time:
-                    races.append({"track": track_name, "race_num": f"{r}R", "time": match_time.group(1)})
-                    log(f"  {track_name} {r}R: {match_time.group(1)} 取得")
+                    races.append({
+                        "track": display_name, 
+                        "race_num": f"{r}R", 
+                        "time": match_time.group(1)
+                    })
+                    log(f"  {display_name} {r}R: {match_time.group(1)} 取得成功")
                 else:
                     if r > 1: break
     except Exception as e: log(f"オートエラー: {e}")
@@ -92,7 +106,13 @@ async def main():
             dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
             if dt < now - timedelta(hours=6): dt += timedelta(days=1)
             if dt > now:
-                parsed.append({"id": key, "track": r["track"], "race_num": r["race_num"], "time_str": r["time"], "deadline": dt.isoformat()})
+                parsed.append({
+                    "id": key, 
+                    "track": r["track"], 
+                    "race_num": r["race_num"], 
+                    "time_str": r["time"], 
+                    "deadline": dt.isoformat()
+                })
                 seen.add(key)
         except: continue
 
