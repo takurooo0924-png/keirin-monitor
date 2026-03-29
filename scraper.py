@@ -12,7 +12,7 @@ def log(msg):
 async def fetch_data():
     jst = pytz.timezone('Asia/Tokyo')
     now = datetime.now(jst)
-    log(f"--- 3/30 修正スキャン開始: {now.strftime('%H:%M:%S')} ---")
+    log(f"--- 3/30 決戦スキャン開始: {now.strftime('%H:%M:%S')} ---")
     
     races_data = []
 
@@ -26,26 +26,32 @@ async def fetch_data():
 
         try:
             log("【競輪】Kドリームスへアクセス中...")
+            # ページ全体が読み込まれる（ネットワークが静かになる）までしっかり待つ設定
             await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle", timeout=60000)
-            await page.wait_for_timeout(5000)
+            await page.wait_for_timeout(7000) # 念押しで7秒待機
             
+            # デバッグ用の写真は引き続き撮り続ける（何かあった時にすぐわかるように）
+            await page.screenshot(path="debug_kdreams.png", full_page=True)
+            log("  -> 画面撮影完了 (debug_kdreams.png)")
+
             soup = BeautifulSoup(await page.content(), "html.parser")
+            # 会場ごとのブロックを取得
             blocks = soup.select(".kaisai-list")
+            log(f"  -> 発見した開催場数: {len(blocks)}")
 
             for block in blocks:
                 track_tag = block.select_one(".velodrome")
                 if not track_tag: continue
                 track_name = track_tag.get_text(strip=True).replace("競輪", "")
                 
-                # ブロック内の全てのテキストを取得
+                # 【新ロジック】ブロック内の全テキストから、番号と時間を個別に全抽出
                 full_text = block.get_text(separator=' ', strip=True)
                 
-                # レース番号(1Rなど)と時刻(00:00)をそれぞれ全部抽出
                 r_list = re.findall(r'(\d+R)', full_text)
                 t_list = re.findall(r'(\d{1,2}:\d{2})', full_text)
                 
-                # 番号と時刻の数が一致する場合のみペアにする
-                # (Kドリームスの構造上、順番に並んでいるのでこれで正確に取れます)
+                # 番号の数と時間の数が一致する場合のみペアにする
+                # (Kドリの表構造上、順番に並んでいるのでこれで正確に取れます)
                 if len(r_list) > 0 and len(r_list) == len(t_list):
                     for r_num, t_str in zip(r_list, t_list):
                         # そのレースが「終了」や「結果」でないか周辺をチェック
@@ -55,23 +61,27 @@ async def fetch_data():
             log(f"  -> 抽出成功: {len(races_data)} 件の候補を発見")
 
         except Exception as e:
-            log(f"【エラー】: {e}")
+            log(f"【エラー発生】: {e}")
         await browser.close()
 
-    # --- 未来のレースだけを保存 ---
+    # --- 未来のレースだけを抽出（時間判定を強化） ---
     parsed_results = []
     for r in races_data:
         h, m = map(int, r["time_str"].split(':'))
         dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
         
-        # 3/30 02:30に実行して、10:00のレースを「今日の10:00」と正しく判定
-        if dt < now - timedelta(hours=6):
+        # 深夜実行時、お昼のレースを「昨日のレース（過去）」と判定しないための補正
+        # 判定した時間が「今」より1時間以上前なら、それは「今日」ではなく「明日（ミッドナイト等）」
+        if dt < now - timedelta(hours=1):
             dt += timedelta(days=1)
         
         if dt > now:
             parsed_results.append({
                 "id": f"{r['track']}_{r['race_num']}",
-                "track": r["track"], "race_num": r["race_num"], "time_str": r["time_str"], "deadline": dt.isoformat()
+                "track": r["track"], 
+                "race_num": r["race_num"], 
+                "time_str": r["time_str"], 
+                "deadline": dt.isoformat()
             })
 
     parsed_results.sort(key=lambda x: x["deadline"])
