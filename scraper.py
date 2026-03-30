@@ -10,10 +10,10 @@ def log(msg):
 
 # オートレース場名の漢字変換テーブル
 AUTO_TRACK_MAP = {
-    "kawaguchi": "川4", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
+    "kawaguchi": "川口", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
 }
 
-# 競輪場名ホワイトリスト
+# 競輪場名ホワイトリスト（不純物の混入を完全にカット）
 KEIRIN_TRACKS = [
     "函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", 
     "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", 
@@ -29,39 +29,49 @@ async def fetch_keirin(page):
         await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
         await page.wait_for_timeout(3000)
         
-        # ブラウザ内で「テーブルの列」を1つずつ精査する
+        # ブラウザ内で「垂直列スキャン」を実行
         js_code = """
         () => {
             let results = [];
-            // 各開催場のコンテナ（通常・G3共通）をすべて取得
+            // 通常・G3・G1全てのコンテナを対象にする
             let containers = document.querySelectorAll('.kaisai-list, .grade-race-list');
             
             containers.forEach(box => {
-                // 場名の特定
-                let trackNode = box.querySelector('.velodrome, a.JS_POST_THROW');
+                // 場名の特定（JS_POST_THROW または .velodrome）
+                let trackNode = box.querySelector('a.JS_POST_THROW, .velodrome');
                 if (!trackNode) return;
                 let trackName = trackNode.innerText.replace('競輪', '').trim();
                 
-                // レーステーブルを取得
+                // テーブルと行（5行あるtr）を取得
                 let table = box.querySelector('.kaisai-program_table table');
                 if (!table) return;
                 
-                let ths = table.querySelectorAll('thead th');
-                let tds = table.querySelectorAll('tbody td.pre');
+                let headers = table.querySelectorAll('thead th'); // 1R, 2R...
+                let rows = table.querySelectorAll('tbody tr');   // 5つの行
                 
-                // 列（R）ごとにループを回して紐付ける
-                for (let i = 0; i < ths.length; i++) {
-                    let raceNum = ths[i].innerText.trim(); // "1R" など
-                    let cell = tds[i];
-                    if (!cell) continue;
+                // 各列（1R〜12R）を垂直にスキャン
+                for (let colIdx = 0; colIdx < headers.length; colIdx++) {
+                    let raceNum = headers[colIdx].innerText.trim();
+                    let timeValue = null;
                     
-                    // ddタグ（締切時間）がある場合のみ抽出（これでゴミとズレを完全排除）
-                    let timeNode = cell.querySelector('dd');
-                    if (timeNode) {
+                    // 5つの行を上から順に調べ、ddタグ（時刻）が入っている行を探す
+                    for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                        let cell = rows[rowIdx].querySelectorAll('td')[colIdx];
+                        if (cell) {
+                            let dd = cell.querySelector('dd');
+                            if (dd) {
+                                timeValue = dd.innerText.trim();
+                                break; // 時刻が見つかればその列の探索は終了
+                            }
+                        }
+                    }
+                    
+                    // 時刻が見つかった場合のみ、その列のR番号とセットで保存
+                    if (timeValue && /\\d{1,2}:\\d{2}/.test(timeValue)) {
                         results.push({
                             track: trackName,
                             race_num: raceNum,
-                            time: timeNode.innerText.trim()
+                            time: timeValue
                         });
                     }
                 }
@@ -130,8 +140,8 @@ async def main():
             dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
             if dt < now - timedelta(hours=8): dt += timedelta(days=1)
             
-            # 締切10分前以降のレースのみ採用（直近終わったものも確認できるよう少し余裕を持たせました）
-            if dt > now - timedelta(minutes=10):
+            # 現在時刻より前のレース（終了分）は除外
+            if dt > now:
                 parsed.append({
                     "id": key, "track": r["track"], "race_num": r["race_num"], 
                     "time_str": r["time"], "deadline": dt.isoformat()
