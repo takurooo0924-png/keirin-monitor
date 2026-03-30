@@ -1,93 +1,160 @@
 import asyncio
 import json
+import re
+from datetime import datetime, timedelta
+import pytz
 from playwright.async_api import async_playwright
 
+def log(msg):
+    print(msg, flush=True)
+
+# オートレース場名の漢字変換テーブル
+AUTO_TRACK_MAP = {
+    "kawaguchi": "川口", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
+}
+
+# 競輪場名ホワイトリスト
+KEIRIN_TRACKS = [
+    "函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", 
+    "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", 
+    "岐阜", "大垣", "富山", "松阪", "四日市", "福井", "奈良", "向日町", "和歌山", "岸和田", 
+    "玉野", "広島", "防府", "高松", "小松島", "高知", "松山", "小倉", "久留米", "武雄", 
+    "佐世保", "別府", "熊本"
+]
+
+async def fetch_keirin(page):
+    races = []
+    try:
+        log("【競輪】Kドリームス取得中...")
+        await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
+        await page.wait_for_timeout(3000)
+        
+        js_code = """
+        () => {
+            let results = [];
+            let containers = document.querySelectorAll('.kaisai-list, .grade-race-list');
+            
+            containers.forEach(box => {
+                let trackNode = box.querySelector('a.JS_POST_THROW, .velodrome');
+                if (!trackNode) return;
+                let trackName = trackNode.innerText.replace('競輪', '').trim();
+                
+                // 【重要修正】開催場の中にある全てのテーブル枠を取得
+                let wrappers = box.querySelectorAll('.kaisai-program_table');
+                
+                wrappers.forEach(wrapper => {
+                    // 「none」クラスがついている隠しテーブル（過去・未来の別日）は完全に無視する
+                    if (wrapper.classList.contains('none')) return;
+                    
+                    let table = wrapper.querySelector('table');
+                    if (!table) return;
+                    
+                    let headers = table.querySelectorAll('thead th');
+                    let rows = table.querySelectorAll('tbody tr');
+                    
+                    for (let colIdx = 0; colIdx < headers.length; colIdx++) {
+                        let raceNum = headers[colIdx].innerText.trim();
+                        let timeValue = null;
+                        
+                        for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                            // colspan等があっても、時刻(dd)が入っている行は独立しているので正しく機能する
+                            let cell = rows[rowIdx].querySelectorAll('td')[colIdx];
+                            if (cell) {
+                                let dd = cell.querySelector('dd');
+                                if (dd) {
+                                    timeValue = dd.innerText.trim();
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        if (timeValue && /\\d{1,2}:\\d{2}/.test(timeValue)) {
+                            results.push({
+                                track: trackName,
+                                race_num: raceNum,
+                                time: timeValue
+                            });
+                        }
+                    }
+                });
+            });
+            return results;
+        }
+        """
+        raw_races = await page.evaluate(js_code)
+        
+        for r in raw_races:
+            if r['track'] in KEIRIN_TRACKS:
+                races.append(r)
+                    
+    except Exception as e:
+        log(f"競輪エラー: {e}")
+    return races
+
+async def fetch_auto(page):
+    races = []
+    try:
+        log("【オート】公式サイト取得中...")
+        jst = pytz.timezone('Asia/Tokyo')
+        today_str = datetime.now(jst).strftime('%Y-%m-%d')
+        await page.goto("https://autorace.jp/", wait_until="networkidle")
+        content = await page.content()
+        track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
+        if not track_keys:
+            await page.goto("https://autorace.jp/netstadium/", wait_until="networkidle")
+            content = await page.content()
+            track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
+        for key in track_keys:
+            display_name = AUTO_TRACK_MAP.get(key.lower(), key)
+            for r in range(1, 13):
+                url = f"https://autorace.jp/race_info/Program/{key}/{today_str}_{r}/program"
+                await page.goto(url, wait_until="domcontentloaded")
+                try: await page.wait_for_selector("text=投票締切", timeout=2000)
+                except:
+                    if r > 1: break
+                    continue
+                body_text = await page.inner_text("body")
+                match_time = re.search(r'投票締切\s*(\d{1,2}:\d{2})', body_text)
+                if match_time:
+                    races.append({"track": display_name, "race_num": f"{r}R", "time": match_time.group(1)})
+    except Exception as e: log(f"オートエラー: {e}")
+    return races
+
 async def main():
-    print("【調査開始】Kドリームスのページ構造を解析します...", flush=True)
+    jst = pytz.timezone('Asia/Tokyo')
+    now = datetime.now(jst)
+    all_races = []
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0")
         page = await context.new_page()
-        
+        all_races.extend(await fetch_keirin(page))
+        all_races.extend(await fetch_auto(page))
+        await browser.close()
+
+    parsed = []
+    seen = set()
+    for r in all_races:
+        key = f"{r['track']}_{r['race_num']}"
+        if key in seen: continue
         try:
-            # 競輪のページへアクセス
-            await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
-            await page.wait_for_timeout(3000)
+            h, m = map(int, r["time"].split(':'))
+            dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
+            if dt < now - timedelta(hours=8): dt += timedelta(days=1)
             
-            # ページ内の「場名」と「テーブル構造」を根こそぎ取得するJS
-            js_code = """
-            () => {
-                let debugInfo = { 
-                    url: document.location.href, 
-                    track_links: [],
-                    tables: [] 
-                };
-                
-                // 1. 「競輪」という文字を含むリンク（場名）のクラスと親要素を調査
-                let links = Array.from(document.querySelectorAll('a')).filter(a => a.innerText.includes('競輪'));
-                debugInfo.track_links = links.map(a => ({ 
-                    text: a.innerText.trim(), 
-                    className: a.className, 
-                    parentClass: a.parentElement ? a.parentElement.className : "none" 
-                }));
+            # 終了分は除外（10分程度の猶予を持たせる）
+            if dt > now - timedelta(minutes=10):
+                parsed.append({
+                    "id": key, "track": r["track"], "race_num": r["race_num"], 
+                    "time_str": r["time"], "deadline": dt.isoformat()
+                })
+                seen.add(key)
+        except: continue
 
-                // 2. ページ内のすべてのテーブルの「1R」の列（最初の列）のHTML構造を調査
-                let tables = document.querySelectorAll('table');
-                tables.forEach((tbl, idx) => {
-                    // テーブルを囲っている外枠のクラス名を3階層上まで取得
-                    let parentClasses = [];
-                    let curr = tbl.parentElement;
-                    for(let i=0; i<3 && curr; i++) {
-                        if(curr.className) parentClasses.push(curr.className);
-                        curr = curr.parentElement;
-                    }
-                    
-                    // テーブルの近くにあるテキスト（場名を特定する手がかり）
-                    let trackContext = "";
-                    let wrapper = tbl.closest('div, section');
-                    if (wrapper) {
-                        trackContext = wrapper.innerText.substring(0, 30).replace(/\\n/g, ' '); 
-                    }
-
-                    // 1Rの列の5つの行（tr）の中身を調査
-                    let tbody = tbl.querySelector('tbody');
-                    let trs = tbody ? tbody.querySelectorAll('tr') : [];
-                    let firstColData = [];
-                    
-                    trs.forEach((tr, trIdx) => {
-                        if(trIdx > 5) return; // 最初の数行だけで構造は分かる
-                        let firstCell = tr.querySelectorAll('td')[0];
-                        firstColData.push({
-                            row: trIdx + 1,
-                            html: firstCell ? firstCell.innerHTML.trim().replace(/\\n/g, '') : "セルなし",
-                            text: firstCell ? firstCell.innerText.trim().replace(/\\n/g, ' | ') : "テキストなし"
-                        });
-                    });
-
-                    debugInfo.tables.push({
-                        table_index: idx,
-                        parents: parentClasses.join(" < "),
-                        context: trackContext,
-                        row_count: trs.length,
-                        column_1R_structure: firstColData
-                    });
-                });
-
-                return debugInfo;
-            }
-            """
-            
-            debug_info = await page.evaluate(js_code)
-            
-            # 結果をGitHubのログに綺麗に出力
-            print("========== 【解析結果（ここから下をコピーしてください）】 ==========", flush=True)
-            print(json.dumps(debug_info, ensure_ascii=False, indent=2), flush=True)
-            print("========== 【解析結果（ここまで）】 ==========", flush=True)
-            
-        except Exception as e:
-            print(f"エラー発生: {e}", flush=True)
-        finally:
-            await browser.close()
+    parsed.sort(key=lambda x: x["deadline"])
+    with open('schedule.json', 'w', encoding='utf-8') as f:
+        json.dump(parsed, f, ensure_ascii=False, indent=2)
+    log(f"保存完了: {len(parsed)} 件")
 
 if __name__ == "__main__":
     asyncio.run(main())
