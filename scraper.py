@@ -1,49 +1,162 @@
 import asyncio
+import json
+import re
+from datetime import datetime, timedelta
+import pytz
 from playwright.async_api import async_playwright
 
+def log(msg):
+    print(msg, flush=True)
+
+# オートレース場名の漢字変換テーブル
+AUTO_TRACK_MAP = {
+    "kawaguchi": "川口", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
+}
+
+async def fetch_keirin(page):
+    races = []
+    try:
+        log("【競輪】Kドリームス取得中...")
+        await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
+        await page.wait_for_timeout(3000)
+        
+        js_code = """
+        () => {
+            let results = [];
+            let containers = document.querySelectorAll('.kaisai-list, .grade-race-list');
+            const KEIRIN_LIST = ["函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", "岐阜", "大垣", "富山", "松阪", "四日市", "福井", "奈良", "向日町", "和歌山", "岸和田", "玉野", "広島", "防府", "高松", "小松島", "高知", "松山", "小倉", "久留米", "武雄", "佐世保", "別府", "熊本"];
+            
+            containers.forEach(box => {
+                let trackNode = box.querySelector('.velodrome, a.JS_POST_THROW');
+                if (!trackNode) return;
+                
+                let rawText = trackNode.innerText || "";
+                let trackName = "";
+                for (let tk of KEIRIN_LIST) {
+                    if (rawText.includes(tk)) {
+                        trackName = tk;
+                        break;
+                    }
+                }
+                if (!trackName) return;
+                
+                let wrappers = box.querySelectorAll('.kaisai-program_table');
+                wrappers.forEach(wrapper => {
+                    // 隠しテーブル（過去・未来の別日）は完全に無視する
+                    if (wrapper.classList.contains('none')) return;
+                    
+                    let table = wrapper.querySelector('table');
+                    if (!table) return;
+                    
+                    // 【修正】theadタグが存在しないため、直接thを探す
+                    let headers = table.querySelectorAll('th');
+                    let rows = table.querySelectorAll('tbody tr');
+                    
+                    for (let colIdx = 0; colIdx < headers.length; colIdx++) {
+                        let raceNum = headers[colIdx].innerText.trim();
+                        let timeValue = null;
+                        
+                        for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                            let tds = rows[rowIdx].querySelectorAll('td');
+                            // tdが存在し、かつcolIdx番目がある場合のみ
+                            if (tds && tds[colIdx]) {
+                                let dd = tds[colIdx].querySelector('dd');
+                                if (dd) {
+                                    timeValue = dd.innerText.trim();
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        if (timeValue && /\d{1,2}:\d{2}/.test(timeValue)) {
+                            results.push({
+                                track: trackName,
+                                race_num: raceNum,
+                                time: timeValue
+                            });
+                        }
+                    }
+                });
+            });
+            return results;
+        }
+        """
+        raw_races = await page.evaluate(js_code)
+        
+        for r in raw_races:
+            races.append(r)
+                    
+    except Exception as e:
+        log(f"競輪エラー: {e}")
+    return races
+
+async def fetch_auto(page):
+    races = []
+    try:
+        log("【オート】公式サイト取得中...")
+        jst = pytz.timezone('Asia/Tokyo')
+        today_str = datetime.now(jst).strftime('%Y-%m-%d')
+        await page.goto("https://autorace.jp/", wait_until="networkidle")
+        content = await page.content()
+        track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
+        if not track_keys:
+            await page.goto("https://autorace.jp/netstadium/", wait_until="networkidle")
+            content = await page.content()
+            track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
+        for key in track_keys:
+            display_name = AUTO_TRACK_MAP.get(key.lower(), key)
+            for r in range(1, 13):
+                url = f"https://autorace.jp/race_info/Program/{key}/{today_str}_{r}/program"
+                await page.goto(url, wait_until="domcontentloaded")
+                try: await page.wait_for_selector("text=投票締切", timeout=2000)
+                except:
+                    if r > 1: break
+                    continue
+                body_text = await page.inner_text("body")
+                match_time = re.search(r'投票締切\s*(\d{1,2}:\d{2})', body_text)
+                if match_time:
+                    races.append({"track": display_name, "race_num": f"{r}R", "time": match_time.group(1)})
+    except Exception as e: log(f"オートエラー: {e}")
+    return races
+
 async def main():
-    print("【HTML取得開始】Kドリームスの生HTMLを取得します...", flush=True)
+    jst = pytz.timezone('Asia/Tokyo')
+    now = datetime.now(jst)
+    all_races = []
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0")
         page = await context.new_page()
-        
-        try:
-            # 競輪のページへアクセス
-            await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
-            await page.wait_for_timeout(3000)
-            
-            # 生のHTMLを取得し、ログ容量削減のため不要なタグを掃除するJS
-            js_code = """
-            () => {
-                let clone = document.body.cloneNode(true);
-                
-                // 構造解析に関係ないノイズ（スクリプト、装飾、画像、SVGなど）を徹底的に削除
-                let trashes = clone.querySelectorAll('script, style, svg, img, iframe, noscript, path');
-                trashes.forEach(t => t.remove());
-                
-                // フッターの不要なリンク群なども極力削る（解析対象はメインコンテンツなので）
-                let footers = clone.querySelectorAll('footer, .l-footer');
-                footers.forEach(f => f.remove());
+        all_races.extend(await fetch_keirin(page))
+        all_races.extend(await fetch_auto(page))
+        await browser.close()
 
-                return clone.innerHTML;
-            }
-            """
+    parsed = []
+    seen = set()
+    for r in all_races:
+        key = f"{r['track']}_{r['race_num']}"
+        if key in seen: continue
+        try:
+            h, m = map(int, r["time"].split(':'))
+            dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
             
-            raw_html = await page.evaluate(js_code)
+            # 【修正】浜松ゾンビ対策：ミッドナイト（0時〜4時）を夜（18時以降）に見た時だけ「明日」にする
+            if h < 5 and now.hour > 18:
+                dt += timedelta(days=1)
             
-            # 行数を減らすために空白行を詰める
-            lines = [line.strip() for line in raw_html.split('\n') if line.strip()]
-            clean_html = '\n'.join(lines)
-            
-            print("========== 【HTML抽出結果（ここから）】 ==========", flush=True)
-            print(clean_html, flush=True)
-            print("========== 【HTML抽出結果（ここまで）】 ==========", flush=True)
-            
-        except Exception as e:
-            print(f"エラー発生: {e}", flush=True)
-        finally:
-            await browser.close()
+            # 終了分は除外（10分程度の猶予を持たせる）
+            if dt > now - timedelta(minutes=10):
+                parsed.append({
+                    "id": key, "track": r["track"], "race_num": r["race_num"], 
+                    "time_str": r["time"], "deadline": dt.isoformat()
+                })
+                seen.add(key)
+        except: continue
+
+    parsed.sort(key=lambda x: x["deadline"])
+    with open('schedule.json', 'w', encoding='utf-8') as f:
+        json.dump(parsed, f, ensure_ascii=False, indent=2)
+    log(f"保存完了: {len(parsed)} 件")
 
 if __name__ == "__main__":
     asyncio.run(main())
