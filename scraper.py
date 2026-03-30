@@ -13,7 +13,7 @@ AUTO_TRACK_MAP = {
     "kawaguchi": "川口", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
 }
 
-# 競輪場名ホワイトリスト（これ以外の文字列は「場名」として認めない）
+# 競輪場名ホワイトリスト（ゴミデータの混入を完全に遮断）
 KEIRIN_TRACKS = [
     "函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", 
     "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", 
@@ -29,41 +29,35 @@ async def fetch_keirin(page):
         await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
         await page.wait_for_timeout(3000)
         
-        # 1. 全ての「場名候補」を取得
-        js_code = """
-        () => {
-            return Array.from(document.querySelectorAll('.velodrome, a.JS_POST_THROW')).map(node => {
-                let trackName = node.innerText.replace('競輪', '').trim();
-                // 場名を囲っている親枠を特定
-                let container = node.closest('.kaisai-list, .grade-race-list, div[class*="list"]') || node.parentElement;
-                return { track: trackName, text: container ? container.innerText : "" };
-            });
-        }
-        """
-        raw_blocks = await page.evaluate(js_code)
-        
-        # 2. ホワイトリスト照合と重複排除
-        seen_races = set()
-        for b in raw_blocks:
+        # 場名候補の枠を取得
+        blocks = await page.evaluate("""
+            () => {
+                return Array.from(document.querySelectorAll('.velodrome, a.JS_POST_THROW')).map(node => {
+                    let container = node.closest('.kaisai-list, .grade-race-list, div[class*="list"]') || node.parentElement;
+                    return { track: node.innerText.replace('競輪', '').trim(), text: container ? container.innerText : "" };
+                });
+            }
+        """)
+
+        seen_keys = set()
+        for b in blocks:
             track = b['track']
-            # ホワイトリストにない「結果」「オッズ」などはここで完全に遮断
-            if track not in KEIRIN_TRACKS:
-                continue
-                
-            text = b['text']
-            nums = re.findall(r'(\d+)\s*R', text)
-            times = re.findall(r'(\d{1,2})\s*[:：]\s*(\d{2})', text)
+            if track not in KEIRIN_TRACKS: continue
             
-            limit = min(len(nums), len(times))
-            for i in range(limit):
-                race_num = nums[i] + "R"
-                race_time = f"{times[i][0]}:{times[i][1]}"
-                unique_key = f"{track}_{race_num}"
+            # 【重要】番号と時刻のズレを防ぐ「セット抽出」ロジック
+            # 次の「数字+R」が出てくるまでの範囲内に「時刻」がある場合のみペアとして認める
+            # 正規表現: (番号)R ＋ (次の番号Rを含まない任意の文字列) ＋ (時刻)
+            pattern = r'(\d+)\s*R(?:(?!\d+\s*R)[\s\S])*?(\d{1,2}[:：]\d{2})'
+            matches = re.finditer(pattern, b['text'])
+            
+            for m in matches:
+                race_num = m.group(1) + "R"
+                race_time = m.group(2).replace('：', ':')
+                key = f"{track}_{race_num}"
                 
-                # 同じ枠内の重複データを排除
-                if unique_key not in seen_races:
+                if key not in seen_keys:
                     races.append({"track": track, "race_num": race_num, "time": race_time})
-                    seen_races.add(unique_key)
+                    seen_keys.add(key)
                     
     except Exception as e:
         log(f"競輪エラー: {e}")
@@ -118,12 +112,9 @@ async def main():
         try:
             h, m = map(int, r["time"].split(':'))
             dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
-            
-            # 翌日のミッドナイト開催対応
             if dt < now - timedelta(hours=8): dt += timedelta(days=1)
-            
-            # 締切時刻を過ぎていないもの、または直近のレースのみ採用
-            if dt > now - timedelta(minutes=10):
+            # 締切5分前以降のレースのみを抽出（過去のズレたデータを混入させない）
+            if dt > now - timedelta(minutes=5):
                 parsed.append({
                     "id": key, "track": r["track"], "race_num": r["race_num"], 
                     "time_str": r["time"], "deadline": dt.isoformat()
