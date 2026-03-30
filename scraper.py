@@ -17,50 +17,47 @@ AUTO_TRACK_MAP = {
     "iizuka": "飯塚"
 }
 
-# 競輪：デザイン無視・全テキスト抽出の完全無条件ロジックに修正
+# 競輪：元の成功ロジックを復活させ、G3などのイレギュラーな箱にも対応
 async def fetch_keirin(page):
     races = []
-    # 全国43カ所の競輪場リスト（これで画面内のどこに場名があっても確実に見つけます）
-    KEIRIN_TRACKS = ["函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", "岐阜", "大垣", "富山", "松阪", "四日市", "福井", "奈良", "向日町", "和歌山", "岸和田", "玉野", "広島", "防府", "高松", "小松島", "高知", "松山", "小倉", "久留米", "武雄", "佐世保", "別府", "熊本"]
-    
     try:
         log("【競輪】Kドリームス取得中...")
         await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
         await page.wait_for_timeout(3000)
         
-        # 画面に表示されている「すべての文字」を丸ごと取得
-        body_text = await page.inner_text("body")
-        flat_text = re.sub(r'\s+', ' ', body_text)
+        # ブラウザ内のJSを使って「競輪場名」とその「親枠のテキスト」を確実にセットで取得する
+        js_code = """
+        () => {
+            let results = [];
+            let trackNodes = document.querySelectorAll('.velodrome');
+            trackNodes.forEach(node => {
+                let track = node.innerText.replace('競輪', '').trim();
+                // .kaisai-list 以外（G3など）の箱に入っていても親枠を辿ってテキストを取得
+                let container = node.closest('.kaisai-list, .grade-race-list, section, article') || node.parentElement.parentElement;
+                if(container){
+                    results.push({ track: track, text: container.innerText });
+                }
+            });
+            return results;
+        }
+        """
+        blocks = await page.evaluate(js_code)
         
-        # 画面内のどこに競輪場名が書かれているか、その位置をすべて記録
-        tracks_found = []
-        for t in KEIRIN_TRACKS:
-            for match in re.finditer(t, flat_text):
-                tracks_found.append((match.start(), t))
-        tracks_found.sort(key=lambda x: x[0])
-        
-        # 1R～12Rの時間表記を無条件ですべて探し出す
-        for match in re.finditer(r'(1[0-2]|[1-9])\s*R.{0,30}?(\d{1,2}[:：]\d{2})', flat_text):
-            r_pos = match.start()
-            r_num = match.group(1)
-            r_time = match.group(2).replace('：', ':')
+        # 元の優秀な抽出ロジック
+        for b in blocks:
+            track = b['track']
+            text = b['text']
+            nums = re.findall(r'(\d+)\s*R', text)
+            times = re.findall(r'(\d{1,2})\s*[:：]\s*(\d{2})', text)
             
-            # そのレースの直前に書かれていた競輪場名を割り当てる
-            track = None
-            for t_pos, t_name in tracks_found:
-                if t_pos < r_pos:
-                    track = t_name
-                else:
-                    break
-            
-            if track:
-                races.append({"track": track, "race_num": r_num+"R", "time": r_time})
-                
-    except Exception as e: 
-        log(f"競輪エラー: {e}")
+            if len(nums) > 0 and len(nums) <= len(times):
+                for i in range(len(nums)):
+                    races.append({"track": track, "race_num": nums[i]+"R", "time": f"{times[i][0]}:{times[i][1]}"})
+                    
+    except Exception as e: log(f"競輪エラー: {e}")
     return races
 
-# オート：公式サイトから「投票締切」を現物抽出し、漢字に変換（※変更なし）
+# オート：公式サイトから「投票締切」を現物抽出し、漢字に変換
 async def fetch_auto(page):
     races = []
     try:
