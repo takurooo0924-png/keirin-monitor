@@ -13,7 +13,15 @@ AUTO_TRACK_MAP = {
     "kawaguchi": "川口", "isesaki": "伊勢崎", "hamamatsu": "浜松", "sanyo": "山陽", "iizuka": "飯塚"
 }
 
-# 競輪：グレードに関係なく「場名」がある枠のデータをすべて取得する
+# 競輪場名ホワイトリスト（これ以外の文字列は「場名」として認めない）
+KEIRIN_TRACKS = [
+    "函館", "青森", "いわき平", "弥彦", "前橋", "取手", "宇都宮", "大宮", "西武園", "京王閣", 
+    "立川", "松戸", "千葉", "川崎", "平塚", "小田原", "伊東", "静岡", "豊橋", "名古屋", 
+    "岐阜", "大垣", "富山", "松阪", "四日市", "福井", "奈良", "向日町", "和歌山", "岸和田", 
+    "玉野", "広島", "防府", "高松", "小松島", "高知", "松山", "小倉", "久留米", "武雄", 
+    "佐世保", "別府", "熊本"
+]
+
 async def fetch_keirin(page):
     races = []
     try:
@@ -21,49 +29,41 @@ async def fetch_keirin(page):
         await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
         await page.wait_for_timeout(3000)
         
-        # 1. ページ内の全テキストと場名の位置を特定する（箱の名前に依存しない）
-        # 教えていただいた JS_POST_THROW（G3/G1等）と .velodrome（通常）の両方に対応
+        # 1. 全ての「場名候補」を取得
         js_code = """
         () => {
-            let results = [];
-            let trackNodes = document.querySelectorAll('.velodrome, a.JS_POST_THROW');
-            trackNodes.forEach(node => {
+            return Array.from(document.querySelectorAll('.velodrome, a.JS_POST_THROW')).map(node => {
                 let trackName = node.innerText.replace('競輪', '').trim();
-                if (!trackName) return;
-                
-                // 場名を囲っている親の親くらいの大きな枠を自動で見つける
-                let container = node.closest('.kaisai-list, .grade-race-list, [class*="list"]') || node.parentElement.parentElement.parentElement;
-                results.append({
-                    track: trackName,
-                    content: container ? container.innerText : ""
-                });
+                // 場名を囲っている親枠を特定
+                let container = node.closest('.kaisai-list, .grade-race-list, div[class*="list"]') || node.parentElement;
+                return { track: trackName, text: container ? container.innerText : "" };
             });
-            return results;
         }
         """
-        # ※ブラウザ側でエラーが出ないよう安全に要素を走査
-        blocks = await page.evaluate("""
-            () => {
-                return Array.from(document.querySelectorAll('.velodrome, a.JS_POST_THROW')).map(node => {
-                    let container = node.closest('.kaisai-list, .grade-race-list, div[class*="list"]') || node.parentElement;
-                    return { track: node.innerText.replace('競輪', '').trim(), text: container.innerText };
-                });
-            }
-        """)
-
-        for b in blocks:
+        raw_blocks = await page.evaluate(js_code)
+        
+        # 2. ホワイトリスト照合と重複排除
+        seen_races = set()
+        for b in raw_blocks:
             track = b['track']
+            # ホワイトリストにない「結果」「オッズ」などはここで完全に遮断
+            if track not in KEIRIN_TRACKS:
+                continue
+                
             text = b['text']
-            # レース番号と時刻を抽出
             nums = re.findall(r'(\d+)\s*R', text)
             times = re.findall(r'(\d{1,2})\s*[:：]\s*(\d{2})', text)
             
-            # 見つかった数だけリストに追加
-            if len(nums) > 0 and len(times) > 0:
-                # 重複を避けつつ、インデックスの範囲内で取得
-                limit = min(len(nums), len(times))
-                for i in range(limit):
-                    races.append({"track": track, "race_num": nums[i]+"R", "time": f"{times[i][0]}:{times[i][1]}"})
+            limit = min(len(nums), len(times))
+            for i in range(limit):
+                race_num = nums[i] + "R"
+                race_time = f"{times[i][0]}:{times[i][1]}"
+                unique_key = f"{track}_{race_num}"
+                
+                # 同じ枠内の重複データを排除
+                if unique_key not in seen_races:
+                    races.append({"track": track, "race_num": race_num, "time": race_time})
+                    seen_races.add(unique_key)
                     
     except Exception as e:
         log(f"競輪エラー: {e}")
@@ -119,11 +119,11 @@ async def main():
             h, m = map(int, r["time"].split(':'))
             dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
             
-            # 翌日の早朝開催（ミッドナイト等）への対応
+            # 翌日のミッドナイト開催対応
             if dt < now - timedelta(hours=8): dt += timedelta(days=1)
             
-            # 【検証用】過去のレースも1時間はJSONに残す（動作確認のため）
-            if dt > now - timedelta(hours=1):
+            # 締切時刻を過ぎていないもの、または直近のレースのみ採用
+            if dt > now - timedelta(minutes=10):
                 parsed.append({
                     "id": key, "track": r["track"], "race_num": r["race_num"], 
                     "time_str": r["time"], "deadline": dt.isoformat()
