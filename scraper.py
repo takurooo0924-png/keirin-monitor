@@ -17,43 +17,24 @@ AUTO_TRACK_MAP = {
     "iizuka": "飯塚"
 }
 
-# 競輪：元の成功ロジックを復活させ、G3などのイレギュラーな箱にも対応
+# 競輪：成功ロジックを完全に維持
 async def fetch_keirin(page):
     races = []
     try:
         log("【競輪】Kドリームス取得中...")
         await page.goto("https://my.keirin.kdreams.jp/kaisai/", wait_until="networkidle")
         await page.wait_for_timeout(3000)
-        
-        # ブラウザ内のJSを使って「競輪場名」とその「親枠のテキスト」を確実にセットで取得する
-        js_code = """
-        () => {
-            let results = [];
-            let trackNodes = document.querySelectorAll('.velodrome');
-            trackNodes.forEach(node => {
-                let track = node.innerText.replace('競輪', '').trim();
-                // .kaisai-list 以外（G3など）の箱に入っていても親枠を辿ってテキストを取得
-                let container = node.closest('.kaisai-list, .grade-race-list, section, article') || node.parentElement.parentElement;
-                if(container){
-                    results.push({ track: track, text: container.innerText });
-                }
-            });
-            return results;
-        }
-        """
-        blocks = await page.evaluate(js_code)
-        
-        # 元の優秀な抽出ロジック
-        for b in blocks:
-            track = b['track']
-            text = b['text']
+        blocks = await page.query_selector_all(".kaisai-list")
+        for block in blocks:
+            track_tag = await block.query_selector(".velodrome")
+            if not track_tag: continue
+            track = (await track_tag.inner_text()).replace("競輪", "").strip()
+            text = await block.inner_text()
             nums = re.findall(r'(\d+)\s*R', text)
             times = re.findall(r'(\d{1,2})\s*[:：]\s*(\d{2})', text)
-            
             if len(nums) > 0 and len(nums) <= len(times):
                 for i in range(len(nums)):
                     races.append({"track": track, "race_num": nums[i]+"R", "time": f"{times[i][0]}:{times[i][1]}"})
-                    
     except Exception as e: log(f"競輪エラー: {e}")
     return races
 
@@ -75,6 +56,7 @@ async def fetch_auto(page):
             track_keys = list(set(re.findall(r'/Program/([^/\"\'\s]+)', content)))
 
         for key in track_keys:
+            # アルファベットのキー（iizuka等）を漢字（飯塚等）に変換。辞書になければそのまま使用。
             display_name = AUTO_TRACK_MAP.get(key.lower(), key)
             log(f"--- {display_name} ({key}) の番組表を確認 ---")
             
