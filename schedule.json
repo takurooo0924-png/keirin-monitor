@@ -1,47 +1,5 @@
 [
   {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "22:44",
-    "deadline": "2026-05-03T22:44:00+09:00"
-  },
-  {
-    "id": "久留米_6R",
-    "track": "久留米",
-    "race_num": "6R",
-    "time_str": "22:58",
-    "deadline": "2026-05-03T22:58:00+09:00"
-  },
-  {
-    "id": "松山_7R",
-    "track": "松山",
-    "race_num": "7R",
-    "time_str": "23:07",
-    "deadline": "2026-05-03T23:07:00+09:00"
-  },
-  {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "23:10",
-    "deadline": "2026-05-03T23:10:00+09:00"
-  },
-  {
-    "id": "西武園_7R",
-    "track": "西武園",
-    "race_num": "7R",
-    "time_str": "23:16",
-    "deadline": "2026-05-03T23:16:00+09:00"
-  },
-  {
-    "id": "久留米_7R",
-    "track": "久留米",
-    "race_num": "7R",
-    "time_str": "23:25",
-    "deadline": "2026-05-03T23:25:00+09:00"
-  },
-  {
     "id": "sanyou_6R",
     "track": "sanyou",
     "race_num": "6R",
