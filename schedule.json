@@ -1,19 +1,5 @@
 [
   {
-    "id": "武雄_1R",
-    "track": "武雄",
-    "race_num": "1R",
-    "time_str": "08:25",
-    "deadline": "2026-05-13T08:25:00+09:00"
-  },
-  {
-    "id": "武雄_2R",
-    "track": "武雄",
-    "race_num": "2R",
-    "time_str": "08:45",
-    "deadline": "2026-05-13T08:45:00+09:00"
-  },
-  {
     "id": "武雄_3R",
     "track": "武雄",
     "race_num": "3R",
@@ -439,13 +425,6 @@
     "race_num": "9R",
     "time_str": "19:29",
     "deadline": "2026-05-13T19:29:00+09:00"
-  },
-  {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "19:51",
-    "deadline": "2026-05-13T19:51:00+09:00"
   },
   {
     "id": "京王閣_10R",
