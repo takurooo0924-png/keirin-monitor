@@ -1,40 +1,5 @@
 [
   {
-    "id": "函館_8R",
-    "track": "函館",
-    "race_num": "8R",
-    "time_str": "18:31",
-    "deadline": "2026-05-14T18:31:00+09:00"
-  },
-  {
-    "id": "函館_9R",
-    "track": "函館",
-    "race_num": "9R",
-    "time_str": "18:59",
-    "deadline": "2026-05-14T18:59:00+09:00"
-  },
-  {
-    "id": "函館_10R",
-    "track": "函館",
-    "race_num": "10R",
-    "time_str": "19:27",
-    "deadline": "2026-05-14T19:27:00+09:00"
-  },
-  {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "19:51",
-    "deadline": "2026-05-14T19:51:00+09:00"
-  },
-  {
-    "id": "函館_11R",
-    "track": "函館",
-    "race_num": "11R",
-    "time_str": "19:56",
-    "deadline": "2026-05-14T19:56:00+09:00"
-  },
-  {
     "id": "sanyou_2R",
     "track": "sanyou",
     "race_num": "2R",
