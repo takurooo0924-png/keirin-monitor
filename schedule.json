@@ -691,5 +691,12 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-05-23T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "23:38",
+    "deadline": "2026-05-23T23:38:00+09:00"
   }
 ]
