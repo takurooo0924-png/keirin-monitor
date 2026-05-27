@@ -1,89 +1,5 @@
 [
   {
-    "id": "松山_2R",
-    "track": "松山",
-    "race_num": "2R",
-    "time_str": "08:45",
-    "deadline": "2026-05-27T08:45:00+09:00"
-  },
-  {
-    "id": "松山_3R",
-    "track": "松山",
-    "race_num": "3R",
-    "time_str": "09:06",
-    "deadline": "2026-05-27T09:06:00+09:00"
-  },
-  {
-    "id": "松山_4R",
-    "track": "松山",
-    "race_num": "4R",
-    "time_str": "09:27",
-    "deadline": "2026-05-27T09:27:00+09:00"
-  },
-  {
-    "id": "松山_5R",
-    "track": "松山",
-    "race_num": "5R",
-    "time_str": "09:48",
-    "deadline": "2026-05-27T09:48:00+09:00"
-  },
-  {
-    "id": "松山_6R",
-    "track": "松山",
-    "race_num": "6R",
-    "time_str": "10:09",
-    "deadline": "2026-05-27T10:09:00+09:00"
-  },
-  {
-    "id": "松山_7R",
-    "track": "松山",
-    "race_num": "7R",
-    "time_str": "10:30",
-    "deadline": "2026-05-27T10:30:00+09:00"
-  },
-  {
-    "id": "弥彦_1R",
-    "track": "弥彦",
-    "race_num": "1R",
-    "time_str": "10:40",
-    "deadline": "2026-05-27T10:40:00+09:00"
-  },
-  {
-    "id": "大垣_1R",
-    "track": "大垣",
-    "race_num": "1R",
-    "time_str": "10:52",
-    "deadline": "2026-05-27T10:52:00+09:00"
-  },
-  {
-    "id": "弥彦_2R",
-    "track": "弥彦",
-    "race_num": "2R",
-    "time_str": "11:05",
-    "deadline": "2026-05-27T11:05:00+09:00"
-  },
-  {
-    "id": "大垣_2R",
-    "track": "大垣",
-    "race_num": "2R",
-    "time_str": "11:18",
-    "deadline": "2026-05-27T11:18:00+09:00"
-  },
-  {
-    "id": "弥彦_3R",
-    "track": "弥彦",
-    "race_num": "3R",
-    "time_str": "11:32",
-    "deadline": "2026-05-27T11:32:00+09:00"
-  },
-  {
-    "id": "大垣_3R",
-    "track": "大垣",
-    "race_num": "3R",
-    "time_str": "11:46",
-    "deadline": "2026-05-27T11:46:00+09:00"
-  },
-  {
     "id": "弥彦_4R",
     "track": "弥彦",
     "race_num": "4R",
@@ -588,13 +504,6 @@
     "deadline": "2026-05-27T22:40:00+09:00"
   },
   {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "22:44",
-    "deadline": "2026-05-27T22:44:00+09:00"
-  },
-  {
     "id": "玉野_6R",
     "track": "玉野",
     "race_num": "6R",
@@ -616,13 +525,6 @@
     "deadline": "2026-05-27T23:07:00+09:00"
   },
   {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "23:10",
-    "deadline": "2026-05-27T23:10:00+09:00"
-  },
-  {
     "id": "玉野_7R",
     "track": "玉野",
     "race_num": "7R",
@@ -635,12 +537,5 @@
     "race_num": "7R",
     "time_str": "23:25",
     "deadline": "2026-05-27T23:25:00+09:00"
-  },
-  {
-    "id": "sanyou_6R",
-    "track": "sanyou",
-    "race_num": "6R",
-    "time_str": "23:36",
-    "deadline": "2026-05-27T23:36:00+09:00"
   }
 ]
