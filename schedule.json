@@ -1,12 +1,5 @@
 [
   {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "10:54",
-    "deadline": "2026-06-08T10:54:00+09:00"
-  },
-  {
     "id": "sanyou_2R",
     "track": "sanyou",
     "race_num": "2R",
@@ -173,12 +166,5 @@
     "race_num": "5R",
     "time_str": "23:10",
     "deadline": "2026-06-08T23:10:00+09:00"
-  },
-  {
-    "id": "飯塚_6R",
-    "track": "飯塚",
-    "race_num": "6R",
-    "time_str": "23:36",
-    "deadline": "2026-06-08T23:36:00+09:00"
   }
 ]
