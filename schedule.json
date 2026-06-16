@@ -1,241 +1,10 @@
 [
   {
-    "id": "富山_9R",
-    "track": "富山",
-    "race_num": "9R",
-    "time_str": "14:46",
-    "deadline": "2026-06-16T14:46:00+09:00"
-  },
-  {
-    "id": "飯塚_9R",
-    "track": "飯塚",
-    "race_num": "9R",
-    "time_str": "14:46",
-    "deadline": "2026-06-16T14:46:00+09:00"
-  },
-  {
-    "id": "岸和田_10R",
-    "track": "岸和田",
-    "race_num": "10R",
-    "time_str": "15:08",
-    "deadline": "2026-06-16T15:08:00+09:00"
-  },
-  {
-    "id": "飯塚_10R",
-    "track": "飯塚",
-    "race_num": "10R",
-    "time_str": "15:16",
-    "deadline": "2026-06-16T15:16:00+09:00"
-  },
-  {
-    "id": "富山_10R",
-    "track": "富山",
-    "race_num": "10R",
-    "time_str": "15:23",
-    "deadline": "2026-06-16T15:23:00+09:00"
-  },
-  {
-    "id": "岸和田_11R",
-    "track": "岸和田",
-    "race_num": "11R",
-    "time_str": "15:45",
-    "deadline": "2026-06-16T15:45:00+09:00"
-  },
-  {
-    "id": "別府_1R",
-    "track": "別府",
-    "race_num": "1R",
-    "time_str": "15:50",
-    "deadline": "2026-06-16T15:50:00+09:00"
-  },
-  {
-    "id": "飯塚_11R",
-    "track": "飯塚",
-    "race_num": "11R",
-    "time_str": "15:54",
-    "deadline": "2026-06-16T15:54:00+09:00"
-  },
-  {
-    "id": "富山_11R",
-    "track": "富山",
-    "race_num": "11R",
-    "time_str": "16:01",
-    "deadline": "2026-06-16T16:01:00+09:00"
-  },
-  {
-    "id": "函館_1R",
-    "track": "函館",
-    "race_num": "1R",
-    "time_str": "16:06",
-    "deadline": "2026-06-16T16:06:00+09:00"
-  },
-  {
-    "id": "別府_2R",
-    "track": "別府",
-    "race_num": "2R",
-    "time_str": "16:15",
-    "deadline": "2026-06-16T16:15:00+09:00"
-  },
-  {
-    "id": "岸和田_12R",
-    "track": "岸和田",
-    "race_num": "12R",
-    "time_str": "16:25",
-    "deadline": "2026-06-16T16:25:00+09:00"
-  },
-  {
-    "id": "函館_2R",
-    "track": "函館",
-    "race_num": "2R",
-    "time_str": "16:32",
-    "deadline": "2026-06-16T16:32:00+09:00"
-  },
-  {
-    "id": "飯塚_12R",
-    "track": "飯塚",
-    "race_num": "12R",
-    "time_str": "16:33",
-    "deadline": "2026-06-16T16:33:00+09:00"
-  },
-  {
-    "id": "別府_3R",
-    "track": "別府",
-    "race_num": "3R",
-    "time_str": "16:39",
-    "deadline": "2026-06-16T16:39:00+09:00"
-  },
-  {
-    "id": "函館_3R",
-    "track": "函館",
-    "race_num": "3R",
-    "time_str": "16:54",
-    "deadline": "2026-06-16T16:54:00+09:00"
-  },
-  {
-    "id": "別府_4R",
-    "track": "別府",
-    "race_num": "4R",
-    "time_str": "17:03",
-    "deadline": "2026-06-16T17:03:00+09:00"
-  },
-  {
-    "id": "函館_4R",
-    "track": "函館",
-    "race_num": "4R",
-    "time_str": "17:16",
-    "deadline": "2026-06-16T17:16:00+09:00"
-  },
-  {
-    "id": "別府_5R",
-    "track": "別府",
-    "race_num": "5R",
-    "time_str": "17:27",
-    "deadline": "2026-06-16T17:27:00+09:00"
-  },
-  {
-    "id": "函館_5R",
-    "track": "函館",
-    "race_num": "5R",
-    "time_str": "17:39",
-    "deadline": "2026-06-16T17:39:00+09:00"
-  },
-  {
-    "id": "別府_6R",
-    "track": "別府",
-    "race_num": "6R",
-    "time_str": "17:51",
-    "deadline": "2026-06-16T17:51:00+09:00"
-  },
-  {
-    "id": "函館_6R",
-    "track": "函館",
-    "race_num": "6R",
-    "time_str": "18:03",
-    "deadline": "2026-06-16T18:03:00+09:00"
-  },
-  {
-    "id": "別府_7R",
-    "track": "別府",
-    "race_num": "7R",
-    "time_str": "18:15",
-    "deadline": "2026-06-16T18:15:00+09:00"
-  },
-  {
-    "id": "函館_7R",
-    "track": "函館",
-    "race_num": "7R",
-    "time_str": "18:27",
-    "deadline": "2026-06-16T18:27:00+09:00"
-  },
-  {
-    "id": "別府_8R",
-    "track": "別府",
-    "race_num": "8R",
-    "time_str": "18:39",
-    "deadline": "2026-06-16T18:39:00+09:00"
-  },
-  {
-    "id": "函館_8R",
-    "track": "函館",
-    "race_num": "8R",
-    "time_str": "18:51",
-    "deadline": "2026-06-16T18:51:00+09:00"
-  },
-  {
-    "id": "別府_9R",
-    "track": "別府",
-    "race_num": "9R",
-    "time_str": "19:04",
-    "deadline": "2026-06-16T19:04:00+09:00"
-  },
-  {
-    "id": "函館_9R",
-    "track": "函館",
-    "race_num": "9R",
-    "time_str": "19:16",
-    "deadline": "2026-06-16T19:16:00+09:00"
-  },
-  {
-    "id": "別府_10R",
-    "track": "別府",
-    "race_num": "10R",
-    "time_str": "19:30",
-    "deadline": "2026-06-16T19:30:00+09:00"
-  },
-  {
-    "id": "函館_10R",
-    "track": "函館",
-    "race_num": "10R",
-    "time_str": "19:43",
-    "deadline": "2026-06-16T19:43:00+09:00"
-  },
-  {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "19:51",
-    "deadline": "2026-06-16T19:51:00+09:00"
-  },
-  {
-    "id": "別府_11R",
-    "track": "別府",
-    "race_num": "11R",
-    "time_str": "19:57",
-    "deadline": "2026-06-16T19:57:00+09:00"
-  },
-  {
     "id": "函館_11R",
     "track": "函館",
     "race_num": "11R",
     "time_str": "20:11",
     "deadline": "2026-06-16T20:11:00+09:00"
-  },
-  {
-    "id": "sanyou_2R",
-    "track": "sanyou",
-    "race_num": "2R",
-    "time_str": "20:18",
-    "deadline": "2026-06-16T20:18:00+09:00"
   },
   {
     "id": "別府_12R",
@@ -259,13 +28,6 @@
     "deadline": "2026-06-16T20:45:00+09:00"
   },
   {
-    "id": "sanyou_3R",
-    "track": "sanyou",
-    "race_num": "3R",
-    "time_str": "20:46",
-    "deadline": "2026-06-16T20:46:00+09:00"
-  },
-  {
     "id": "松戸_2R",
     "track": "松戸",
     "race_num": "2R",
@@ -278,13 +40,6 @@
     "race_num": "2R",
     "time_str": "21:05",
     "deadline": "2026-06-16T21:05:00+09:00"
-  },
-  {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "21:14",
-    "deadline": "2026-06-16T21:14:00+09:00"
   },
   {
     "id": "松戸_3R",
@@ -308,13 +63,6 @@
     "deadline": "2026-06-16T21:35:00+09:00"
   },
   {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "21:42",
-    "deadline": "2026-06-16T21:42:00+09:00"
-  },
-  {
     "id": "松阪_4R",
     "track": "松阪",
     "race_num": "4R",
@@ -334,13 +82,6 @@
     "race_num": "5R",
     "time_str": "22:05",
     "deadline": "2026-06-16T22:05:00+09:00"
-  },
-  {
-    "id": "sanyou_6R",
-    "track": "sanyou",
-    "race_num": "6R",
-    "time_str": "22:10",
-    "deadline": "2026-06-16T22:10:00+09:00"
   },
   {
     "id": "松戸_6R",
@@ -364,13 +105,6 @@
     "deadline": "2026-06-16T22:35:00+09:00"
   },
   {
-    "id": "sanyou_7R",
-    "track": "sanyou",
-    "race_num": "7R",
-    "time_str": "22:38",
-    "deadline": "2026-06-16T22:38:00+09:00"
-  },
-  {
     "id": "松阪_7R",
     "track": "松阪",
     "race_num": "7R",
@@ -392,13 +126,6 @@
     "deadline": "2026-06-16T23:05:00+09:00"
   },
   {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "23:06",
-    "deadline": "2026-06-16T23:06:00+09:00"
-  },
-  {
     "id": "松戸_9R",
     "track": "松戸",
     "race_num": "9R",
@@ -411,12 +138,5 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-06-16T23:25:00+09:00"
-  },
-  {
-    "id": "sanyou_9R",
-    "track": "sanyou",
-    "race_num": "9R",
-    "time_str": "23:38",
-    "deadline": "2026-06-16T23:38:00+09:00"
   }
 ]
