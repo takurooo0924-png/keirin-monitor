@@ -511,6 +511,13 @@
     "deadline": "2026-06-25T21:24:00+09:00"
   },
   {
+    "id": "sanyou_1R",
+    "track": "sanyou",
+    "race_num": "1R",
+    "time_str": "21:26",
+    "deadline": "2026-06-25T21:26:00+09:00"
+  },
+  {
     "id": "大垣_3R",
     "track": "大垣",
     "race_num": "3R",
@@ -530,6 +537,13 @@
     "race_num": "4R",
     "time_str": "21:48",
     "deadline": "2026-06-25T21:48:00+09:00"
+  },
+  {
+    "id": "sanyou_2R",
+    "track": "sanyou",
+    "race_num": "2R",
+    "time_str": "21:52",
+    "deadline": "2026-06-25T21:52:00+09:00"
   },
   {
     "id": "大垣_4R",
@@ -553,6 +567,13 @@
     "deadline": "2026-06-25T22:13:00+09:00"
   },
   {
+    "id": "sanyou_3R",
+    "track": "sanyou",
+    "race_num": "3R",
+    "time_str": "22:18",
+    "deadline": "2026-06-25T22:18:00+09:00"
+  },
+  {
     "id": "大垣_5R",
     "track": "大垣",
     "race_num": "5R",
@@ -572,6 +593,13 @@
     "race_num": "6R",
     "time_str": "22:40",
     "deadline": "2026-06-25T22:40:00+09:00"
+  },
+  {
+    "id": "sanyou_4R",
+    "track": "sanyou",
+    "race_num": "4R",
+    "time_str": "22:44",
+    "deadline": "2026-06-25T22:44:00+09:00"
   },
   {
     "id": "大垣_6R",
@@ -595,6 +623,13 @@
     "deadline": "2026-06-25T23:07:00+09:00"
   },
   {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "23:10",
+    "deadline": "2026-06-25T23:10:00+09:00"
+  },
+  {
     "id": "大垣_7R",
     "track": "大垣",
     "race_num": "7R",
@@ -607,5 +642,12 @@
     "race_num": "7R",
     "time_str": "23:25",
     "deadline": "2026-06-25T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "23:36",
+    "deadline": "2026-06-25T23:36:00+09:00"
   }
 ]
