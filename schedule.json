@@ -1,145 +1,5 @@
 [
   {
-    "id": "松戸_12R",
-    "track": "松戸",
-    "race_num": "12R",
-    "time_str": "20:25",
-    "deadline": "2026-06-25T20:25:00+09:00"
-  },
-  {
-    "id": "小松島_1R",
-    "track": "小松島",
-    "race_num": "1R",
-    "time_str": "20:36",
-    "deadline": "2026-06-25T20:36:00+09:00"
-  },
-  {
-    "id": "伊勢崎_12R",
-    "track": "伊勢崎",
-    "race_num": "12R",
-    "time_str": "20:38",
-    "deadline": "2026-06-25T20:38:00+09:00"
-  },
-  {
-    "id": "大垣_1R",
-    "track": "大垣",
-    "race_num": "1R",
-    "time_str": "20:44",
-    "deadline": "2026-06-25T20:44:00+09:00"
-  },
-  {
-    "id": "青森_1R",
-    "track": "青森",
-    "race_num": "1R",
-    "time_str": "20:52",
-    "deadline": "2026-06-25T20:52:00+09:00"
-  },
-  {
-    "id": "小松島_2R",
-    "track": "小松島",
-    "race_num": "2R",
-    "time_str": "21:00",
-    "deadline": "2026-06-25T21:00:00+09:00"
-  },
-  {
-    "id": "大垣_2R",
-    "track": "大垣",
-    "race_num": "2R",
-    "time_str": "21:08",
-    "deadline": "2026-06-25T21:08:00+09:00"
-  },
-  {
-    "id": "青森_2R",
-    "track": "青森",
-    "race_num": "2R",
-    "time_str": "21:16",
-    "deadline": "2026-06-25T21:16:00+09:00"
-  },
-  {
-    "id": "小松島_3R",
-    "track": "小松島",
-    "race_num": "3R",
-    "time_str": "21:24",
-    "deadline": "2026-06-25T21:24:00+09:00"
-  },
-  {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "21:26",
-    "deadline": "2026-06-25T21:26:00+09:00"
-  },
-  {
-    "id": "大垣_3R",
-    "track": "大垣",
-    "race_num": "3R",
-    "time_str": "21:32",
-    "deadline": "2026-06-25T21:32:00+09:00"
-  },
-  {
-    "id": "青森_3R",
-    "track": "青森",
-    "race_num": "3R",
-    "time_str": "21:40",
-    "deadline": "2026-06-25T21:40:00+09:00"
-  },
-  {
-    "id": "小松島_4R",
-    "track": "小松島",
-    "race_num": "4R",
-    "time_str": "21:48",
-    "deadline": "2026-06-25T21:48:00+09:00"
-  },
-  {
-    "id": "sanyou_2R",
-    "track": "sanyou",
-    "race_num": "2R",
-    "time_str": "21:52",
-    "deadline": "2026-06-25T21:52:00+09:00"
-  },
-  {
-    "id": "大垣_4R",
-    "track": "大垣",
-    "race_num": "4R",
-    "time_str": "21:56",
-    "deadline": "2026-06-25T21:56:00+09:00"
-  },
-  {
-    "id": "青森_4R",
-    "track": "青森",
-    "race_num": "4R",
-    "time_str": "22:04",
-    "deadline": "2026-06-25T22:04:00+09:00"
-  },
-  {
-    "id": "小松島_5R",
-    "track": "小松島",
-    "race_num": "5R",
-    "time_str": "22:13",
-    "deadline": "2026-06-25T22:13:00+09:00"
-  },
-  {
-    "id": "sanyou_3R",
-    "track": "sanyou",
-    "race_num": "3R",
-    "time_str": "22:18",
-    "deadline": "2026-06-25T22:18:00+09:00"
-  },
-  {
-    "id": "大垣_5R",
-    "track": "大垣",
-    "race_num": "5R",
-    "time_str": "22:22",
-    "deadline": "2026-06-25T22:22:00+09:00"
-  },
-  {
-    "id": "青森_5R",
-    "track": "青森",
-    "race_num": "5R",
-    "time_str": "22:31",
-    "deadline": "2026-06-25T22:31:00+09:00"
-  },
-  {
     "id": "小松島_6R",
     "track": "小松島",
     "race_num": "6R",
@@ -175,6 +35,13 @@
     "deadline": "2026-06-25T23:07:00+09:00"
   },
   {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "23:10",
+    "deadline": "2026-06-25T23:10:00+09:00"
+  },
+  {
     "id": "大垣_7R",
     "track": "大垣",
     "race_num": "7R",
@@ -187,5 +54,12 @@
     "race_num": "7R",
     "time_str": "23:25",
     "deadline": "2026-06-25T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "23:36",
+    "deadline": "2026-06-25T23:36:00+09:00"
   }
 ]
