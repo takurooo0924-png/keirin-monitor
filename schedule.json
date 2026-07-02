@@ -1,96 +1,5 @@
 [
   {
-    "id": "豊橋_1R",
-    "track": "豊橋",
-    "race_num": "1R",
-    "time_str": "08:25",
-    "deadline": "2026-07-02T08:25:00+09:00"
-  },
-  {
-    "id": "奈良_1R",
-    "track": "奈良",
-    "race_num": "1R",
-    "time_str": "08:35",
-    "deadline": "2026-07-02T08:35:00+09:00"
-  },
-  {
-    "id": "豊橋_2R",
-    "track": "豊橋",
-    "race_num": "2R",
-    "time_str": "08:45",
-    "deadline": "2026-07-02T08:45:00+09:00"
-  },
-  {
-    "id": "奈良_2R",
-    "track": "奈良",
-    "race_num": "2R",
-    "time_str": "08:55",
-    "deadline": "2026-07-02T08:55:00+09:00"
-  },
-  {
-    "id": "豊橋_3R",
-    "track": "豊橋",
-    "race_num": "3R",
-    "time_str": "09:05",
-    "deadline": "2026-07-02T09:05:00+09:00"
-  },
-  {
-    "id": "奈良_3R",
-    "track": "奈良",
-    "race_num": "3R",
-    "time_str": "09:15",
-    "deadline": "2026-07-02T09:15:00+09:00"
-  },
-  {
-    "id": "豊橋_4R",
-    "track": "豊橋",
-    "race_num": "4R",
-    "time_str": "09:25",
-    "deadline": "2026-07-02T09:25:00+09:00"
-  },
-  {
-    "id": "奈良_4R",
-    "track": "奈良",
-    "race_num": "4R",
-    "time_str": "09:35",
-    "deadline": "2026-07-02T09:35:00+09:00"
-  },
-  {
-    "id": "豊橋_5R",
-    "track": "豊橋",
-    "race_num": "5R",
-    "time_str": "09:45",
-    "deadline": "2026-07-02T09:45:00+09:00"
-  },
-  {
-    "id": "奈良_5R",
-    "track": "奈良",
-    "race_num": "5R",
-    "time_str": "09:55",
-    "deadline": "2026-07-02T09:55:00+09:00"
-  },
-  {
-    "id": "豊橋_6R",
-    "track": "豊橋",
-    "race_num": "6R",
-    "time_str": "10:05",
-    "deadline": "2026-07-02T10:05:00+09:00"
-  },
-  {
-    "id": "奈良_6R",
-    "track": "奈良",
-    "race_num": "6R",
-    "time_str": "10:15",
-    "deadline": "2026-07-02T10:15:00+09:00"
-  },
-  {
-    "id": "豊橋_7R",
-    "track": "豊橋",
-    "race_num": "7R",
-    "time_str": "10:25",
-    "deadline": "2026-07-02T10:25:00+09:00"
-  },
-  {
     "id": "奈良_7R",
     "track": "奈良",
     "race_num": "7R",
@@ -252,6 +161,13 @@
     "deadline": "2026-07-02T14:11:00+09:00"
   },
   {
+    "id": "sanyou_8R",
+    "track": "sanyou",
+    "race_num": "8R",
+    "time_str": "14:12",
+    "deadline": "2026-07-02T14:12:00+09:00"
+  },
+  {
     "id": "大宮_8R",
     "track": "大宮",
     "race_num": "8R",
@@ -264,6 +180,13 @@
     "race_num": "9R",
     "time_str": "14:41",
     "deadline": "2026-07-02T14:41:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "14:44",
+    "deadline": "2026-07-02T14:44:00+09:00"
   },
   {
     "id": "大宮_9R",
@@ -285,6 +208,13 @@
     "race_num": "10R",
     "time_str": "15:11",
     "deadline": "2026-07-02T15:11:00+09:00"
+  },
+  {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "15:16",
+    "deadline": "2026-07-02T15:16:00+09:00"
   },
   {
     "id": "伊勢崎_2R",
@@ -320,6 +250,13 @@
     "race_num": "1R",
     "time_str": "15:50",
     "deadline": "2026-07-02T15:50:00+09:00"
+  },
+  {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "15:54",
+    "deadline": "2026-07-02T15:54:00+09:00"
   },
   {
     "id": "大宮_11R",
@@ -362,6 +299,13 @@
     "race_num": "2R",
     "time_str": "16:27",
     "deadline": "2026-07-02T16:27:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
+    "time_str": "16:33",
+    "deadline": "2026-07-02T16:33:00+09:00"
   },
   {
     "id": "平塚_3R",
