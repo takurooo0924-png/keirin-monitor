@@ -1,54 +1,5 @@
 [
   {
-    "id": "松戸_3R",
-    "track": "松戸",
-    "race_num": "3R",
-    "time_str": "09:06",
-    "deadline": "2026-07-21T09:06:00+09:00"
-  },
-  {
-    "id": "松戸_4R",
-    "track": "松戸",
-    "race_num": "4R",
-    "time_str": "09:27",
-    "deadline": "2026-07-21T09:27:00+09:00"
-  },
-  {
-    "id": "松戸_5R",
-    "track": "松戸",
-    "race_num": "5R",
-    "time_str": "09:48",
-    "deadline": "2026-07-21T09:48:00+09:00"
-  },
-  {
-    "id": "松戸_6R",
-    "track": "松戸",
-    "race_num": "6R",
-    "time_str": "10:09",
-    "deadline": "2026-07-21T10:09:00+09:00"
-  },
-  {
-    "id": "松戸_7R",
-    "track": "松戸",
-    "race_num": "7R",
-    "time_str": "10:30",
-    "deadline": "2026-07-21T10:30:00+09:00"
-  },
-  {
-    "id": "富山_1R",
-    "track": "富山",
-    "race_num": "1R",
-    "time_str": "10:40",
-    "deadline": "2026-07-21T10:40:00+09:00"
-  },
-  {
-    "id": "岸和田_1R",
-    "track": "岸和田",
-    "race_num": "1R",
-    "time_str": "10:53",
-    "deadline": "2026-07-21T10:53:00+09:00"
-  },
-  {
     "id": "sanyou_1R",
     "track": "sanyou",
     "race_num": "1R",
