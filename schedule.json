@@ -273,13 +273,6 @@
     "deadline": "2026-07-22T14:06:00+09:00"
   },
   {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "14:12",
-    "deadline": "2026-07-22T14:12:00+09:00"
-  },
-  {
     "id": "富山_9R",
     "track": "富山",
     "race_num": "9R",
@@ -299,13 +292,6 @@
     "race_num": "10R",
     "time_str": "14:37",
     "deadline": "2026-07-22T14:37:00+09:00"
-  },
-  {
-    "id": "sanyou_9R",
-    "track": "sanyou",
-    "race_num": "9R",
-    "time_str": "14:44",
-    "deadline": "2026-07-22T14:44:00+09:00"
   },
   {
     "id": "富山_10R",
@@ -334,13 +320,6 @@
     "race_num": "1R",
     "time_str": "15:15",
     "deadline": "2026-07-22T15:15:00+09:00"
-  },
-  {
-    "id": "sanyou_10R",
-    "track": "sanyou",
-    "race_num": "10R",
-    "time_str": "15:16",
-    "deadline": "2026-07-22T15:16:00+09:00"
   },
   {
     "id": "富山_11R",
@@ -378,13 +357,6 @@
     "deadline": "2026-07-22T15:50:00+09:00"
   },
   {
-    "id": "sanyou_11R",
-    "track": "sanyou",
-    "race_num": "11R",
-    "time_str": "15:54",
-    "deadline": "2026-07-22T15:54:00+09:00"
-  },
-  {
     "id": "前橋_2R",
     "track": "前橋",
     "race_num": "2R",
@@ -418,13 +390,6 @@
     "race_num": "3R",
     "time_str": "16:27",
     "deadline": "2026-07-22T16:27:00+09:00"
-  },
-  {
-    "id": "sanyou_12R",
-    "track": "sanyou",
-    "race_num": "12R",
-    "time_str": "16:33",
-    "deadline": "2026-07-22T16:33:00+09:00"
   },
   {
     "id": "松阪_4R",
