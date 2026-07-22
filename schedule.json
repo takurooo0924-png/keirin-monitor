@@ -266,6 +266,13 @@
     "deadline": "2026-07-23T13:08:00+09:00"
   },
   {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "13:11",
+    "deadline": "2026-07-23T13:11:00+09:00"
+  },
+  {
     "id": "玉野_7R",
     "track": "玉野",
     "race_num": "7R",
@@ -285,6 +292,13 @@
     "race_num": "8R",
     "time_str": "13:36",
     "deadline": "2026-07-23T13:36:00+09:00"
+  },
+  {
+    "id": "sanyou_7R",
+    "track": "sanyou",
+    "race_num": "7R",
+    "time_str": "13:41",
+    "deadline": "2026-07-23T13:41:00+09:00"
   },
   {
     "id": "玉野_8R",
@@ -308,6 +322,13 @@
     "deadline": "2026-07-23T14:06:00+09:00"
   },
   {
+    "id": "sanyou_8R",
+    "track": "sanyou",
+    "race_num": "8R",
+    "time_str": "14:12",
+    "deadline": "2026-07-23T14:12:00+09:00"
+  },
+  {
     "id": "玉野_9R",
     "track": "玉野",
     "race_num": "9R",
@@ -327,6 +348,13 @@
     "race_num": "10R",
     "time_str": "14:37",
     "deadline": "2026-07-23T14:37:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "14:44",
+    "deadline": "2026-07-23T14:44:00+09:00"
   },
   {
     "id": "玉野_10R",
@@ -355,6 +383,13 @@
     "race_num": "1R",
     "time_str": "15:15",
     "deadline": "2026-07-23T15:15:00+09:00"
+  },
+  {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "15:16",
+    "deadline": "2026-07-23T15:16:00+09:00"
   },
   {
     "id": "玉野_11R",
@@ -392,6 +427,13 @@
     "deadline": "2026-07-23T15:50:00+09:00"
   },
   {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "15:54",
+    "deadline": "2026-07-23T15:54:00+09:00"
+  },
+  {
     "id": "前橋_2R",
     "track": "前橋",
     "race_num": "2R",
@@ -425,6 +467,13 @@
     "race_num": "3R",
     "time_str": "16:27",
     "deadline": "2026-07-23T16:27:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
+    "time_str": "16:33",
+    "deadline": "2026-07-23T16:33:00+09:00"
   },
   {
     "id": "松阪_4R",
