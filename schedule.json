@@ -1,124 +1,5 @@
 [
   {
-    "id": "京王閣_1R",
-    "track": "京王閣",
-    "race_num": "1R",
-    "time_str": "20:44",
-    "deadline": "2026-08-01T20:44:00+09:00"
-  },
-  {
-    "id": "sanyou_3R",
-    "track": "sanyou",
-    "race_num": "3R",
-    "time_str": "20:46",
-    "deadline": "2026-08-01T20:46:00+09:00"
-  },
-  {
-    "id": "武雄_1R",
-    "track": "武雄",
-    "race_num": "1R",
-    "time_str": "20:52",
-    "deadline": "2026-08-01T20:52:00+09:00"
-  },
-  {
-    "id": "川口_6R",
-    "track": "川口",
-    "race_num": "6R",
-    "time_str": "20:53",
-    "deadline": "2026-08-01T20:53:00+09:00"
-  },
-  {
-    "id": "高知_2R",
-    "track": "高知",
-    "race_num": "2R",
-    "time_str": "21:00",
-    "deadline": "2026-08-01T21:00:00+09:00"
-  },
-  {
-    "id": "京王閣_2R",
-    "track": "京王閣",
-    "race_num": "2R",
-    "time_str": "21:08",
-    "deadline": "2026-08-01T21:08:00+09:00"
-  },
-  {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "21:14",
-    "deadline": "2026-08-01T21:14:00+09:00"
-  },
-  {
-    "id": "武雄_2R",
-    "track": "武雄",
-    "race_num": "2R",
-    "time_str": "21:16",
-    "deadline": "2026-08-01T21:16:00+09:00"
-  },
-  {
-    "id": "川口_7R",
-    "track": "川口",
-    "race_num": "7R",
-    "time_str": "21:18",
-    "deadline": "2026-08-01T21:18:00+09:00"
-  },
-  {
-    "id": "高知_3R",
-    "track": "高知",
-    "race_num": "3R",
-    "time_str": "21:24",
-    "deadline": "2026-08-01T21:24:00+09:00"
-  },
-  {
-    "id": "京王閣_3R",
-    "track": "京王閣",
-    "race_num": "3R",
-    "time_str": "21:32",
-    "deadline": "2026-08-01T21:32:00+09:00"
-  },
-  {
-    "id": "武雄_3R",
-    "track": "武雄",
-    "race_num": "3R",
-    "time_str": "21:40",
-    "deadline": "2026-08-01T21:40:00+09:00"
-  },
-  {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "21:42",
-    "deadline": "2026-08-01T21:42:00+09:00"
-  },
-  {
-    "id": "高知_4R",
-    "track": "高知",
-    "race_num": "4R",
-    "time_str": "21:48",
-    "deadline": "2026-08-01T21:48:00+09:00"
-  },
-  {
-    "id": "川口_8R",
-    "track": "川口",
-    "race_num": "8R",
-    "time_str": "21:48",
-    "deadline": "2026-08-01T21:48:00+09:00"
-  },
-  {
-    "id": "京王閣_4R",
-    "track": "京王閣",
-    "race_num": "4R",
-    "time_str": "21:56",
-    "deadline": "2026-08-01T21:56:00+09:00"
-  },
-  {
-    "id": "武雄_4R",
-    "track": "武雄",
-    "race_num": "4R",
-    "time_str": "22:04",
-    "deadline": "2026-08-01T22:04:00+09:00"
-  },
-  {
     "id": "sanyou_6R",
     "track": "sanyou",
     "race_num": "6R",
@@ -201,5 +82,12 @@
     "race_num": "7R",
     "time_str": "23:25",
     "deadline": "2026-08-01T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "23:38",
+    "deadline": "2026-08-01T23:38:00+09:00"
   }
 ]
