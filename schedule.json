@@ -1,33 +1,5 @@
 [
   {
-    "id": "岐阜_1R",
-    "track": "岐阜",
-    "race_num": "1R",
-    "time_str": "08:25",
-    "deadline": "2026-08-07T08:25:00+09:00"
-  },
-  {
-    "id": "岐阜_2R",
-    "track": "岐阜",
-    "race_num": "2R",
-    "time_str": "08:45",
-    "deadline": "2026-08-07T08:45:00+09:00"
-  },
-  {
-    "id": "岐阜_3R",
-    "track": "岐阜",
-    "race_num": "3R",
-    "time_str": "09:06",
-    "deadline": "2026-08-07T09:06:00+09:00"
-  },
-  {
-    "id": "岐阜_4R",
-    "track": "岐阜",
-    "race_num": "4R",
-    "time_str": "09:27",
-    "deadline": "2026-08-07T09:27:00+09:00"
-  },
-  {
     "id": "岐阜_5R",
     "track": "岐阜",
     "race_num": "5R",
@@ -553,6 +525,13 @@
     "deadline": "2026-08-07T21:25:00+09:00"
   },
   {
+    "id": "sanyou_1R",
+    "track": "sanyou",
+    "race_num": "1R",
+    "time_str": "21:26",
+    "deadline": "2026-08-07T21:26:00+09:00"
+  },
+  {
     "id": "宇都宮_4R",
     "track": "宇都宮",
     "race_num": "4R",
@@ -565,6 +544,13 @@
     "race_num": "4R",
     "time_str": "21:45",
     "deadline": "2026-08-07T21:45:00+09:00"
+  },
+  {
+    "id": "sanyou_2R",
+    "track": "sanyou",
+    "race_num": "2R",
+    "time_str": "21:52",
+    "deadline": "2026-08-07T21:52:00+09:00"
   },
   {
     "id": "宇都宮_5R",
@@ -588,6 +574,13 @@
     "deadline": "2026-08-07T22:15:00+09:00"
   },
   {
+    "id": "sanyou_3R",
+    "track": "sanyou",
+    "race_num": "3R",
+    "time_str": "22:18",
+    "deadline": "2026-08-07T22:18:00+09:00"
+  },
+  {
     "id": "伊東_6R",
     "track": "伊東",
     "race_num": "6R",
@@ -600,6 +593,13 @@
     "race_num": "7R",
     "time_str": "22:35",
     "deadline": "2026-08-07T22:35:00+09:00"
+  },
+  {
+    "id": "sanyou_4R",
+    "track": "sanyou",
+    "race_num": "4R",
+    "time_str": "22:44",
+    "deadline": "2026-08-07T22:44:00+09:00"
   },
   {
     "id": "伊東_7R",
@@ -623,6 +623,13 @@
     "deadline": "2026-08-07T23:05:00+09:00"
   },
   {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "23:10",
+    "deadline": "2026-08-07T23:10:00+09:00"
+  },
+  {
     "id": "宇都宮_9R",
     "track": "宇都宮",
     "race_num": "9R",
@@ -635,5 +642,12 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-08-07T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "23:36",
+    "deadline": "2026-08-07T23:36:00+09:00"
   }
 ]
