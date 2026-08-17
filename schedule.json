@@ -1,33 +1,5 @@
 [
   {
-    "id": "静岡_8R",
-    "track": "静岡",
-    "race_num": "8R",
-    "time_str": "23:05",
-    "deadline": "2026-08-17T23:05:00+09:00"
-  },
-  {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "23:06",
-    "deadline": "2026-08-17T23:06:00+09:00"
-  },
-  {
-    "id": "前橋_9R",
-    "track": "前橋",
-    "race_num": "9R",
-    "time_str": "23:15",
-    "deadline": "2026-08-17T23:15:00+09:00"
-  },
-  {
-    "id": "静岡_9R",
-    "track": "静岡",
-    "race_num": "9R",
-    "time_str": "23:25",
-    "deadline": "2026-08-17T23:25:00+09:00"
-  },
-  {
     "id": "sanyou_9R",
     "track": "sanyou",
     "race_num": "9R",
