@@ -749,13 +749,6 @@
     "deadline": "2026-08-18T23:05:00+09:00"
   },
   {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "23:06",
-    "deadline": "2026-08-18T23:06:00+09:00"
-  },
-  {
     "id": "弥彦_9R",
     "track": "弥彦",
     "race_num": "9R",
@@ -768,12 +761,5 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-08-18T23:25:00+09:00"
-  },
-  {
-    "id": "sanyou_9R",
-    "track": "sanyou",
-    "race_num": "9R",
-    "time_str": "23:38",
-    "deadline": "2026-08-18T23:38:00+09:00"
   }
 ]
