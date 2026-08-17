@@ -1,47 +1,5 @@
 [
   {
-    "id": "sanyou_3R",
-    "track": "sanyou",
-    "race_num": "3R",
-    "time_str": "20:46",
-    "deadline": "2026-08-17T20:46:00+09:00"
-  },
-  {
-    "id": "前橋_2R",
-    "track": "前橋",
-    "race_num": "2R",
-    "time_str": "20:55",
-    "deadline": "2026-08-17T20:55:00+09:00"
-  },
-  {
-    "id": "静岡_2R",
-    "track": "静岡",
-    "race_num": "2R",
-    "time_str": "21:05",
-    "deadline": "2026-08-17T21:05:00+09:00"
-  },
-  {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "21:14",
-    "deadline": "2026-08-17T21:14:00+09:00"
-  },
-  {
-    "id": "前橋_3R",
-    "track": "前橋",
-    "race_num": "3R",
-    "time_str": "21:15",
-    "deadline": "2026-08-17T21:15:00+09:00"
-  },
-  {
-    "id": "静岡_3R",
-    "track": "静岡",
-    "race_num": "3R",
-    "time_str": "21:25",
-    "deadline": "2026-08-17T21:25:00+09:00"
-  },
-  {
     "id": "前橋_4R",
     "track": "前橋",
     "race_num": "4R",
@@ -105,13 +63,6 @@
     "deadline": "2026-08-17T22:35:00+09:00"
   },
   {
-    "id": "sanyou_7R",
-    "track": "sanyou",
-    "race_num": "7R",
-    "time_str": "22:38",
-    "deadline": "2026-08-17T22:38:00+09:00"
-  },
-  {
     "id": "静岡_7R",
     "track": "静岡",
     "race_num": "7R",
@@ -133,13 +84,6 @@
     "deadline": "2026-08-17T23:05:00+09:00"
   },
   {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "23:06",
-    "deadline": "2026-08-17T23:06:00+09:00"
-  },
-  {
     "id": "前橋_9R",
     "track": "前橋",
     "race_num": "9R",
@@ -152,12 +96,5 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-08-17T23:25:00+09:00"
-  },
-  {
-    "id": "sanyou_9R",
-    "track": "sanyou",
-    "race_num": "9R",
-    "time_str": "23:38",
-    "deadline": "2026-08-17T23:38:00+09:00"
   }
 ]
