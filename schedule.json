@@ -1,33 +1,5 @@
 [
   {
-    "id": "sanyou_2R",
-    "track": "sanyou",
-    "race_num": "2R",
-    "time_str": "20:18",
-    "deadline": "2026-08-20T20:18:00+09:00"
-  },
-  {
-    "id": "川崎_12R",
-    "track": "川崎",
-    "race_num": "12R",
-    "time_str": "20:25",
-    "deadline": "2026-08-20T20:25:00+09:00"
-  },
-  {
-    "id": "弥彦_1R",
-    "track": "弥彦",
-    "race_num": "1R",
-    "time_str": "20:35",
-    "deadline": "2026-08-20T20:35:00+09:00"
-  },
-  {
-    "id": "佐世保_1R",
-    "track": "佐世保",
-    "race_num": "1R",
-    "time_str": "20:45",
-    "deadline": "2026-08-20T20:45:00+09:00"
-  },
-  {
     "id": "sanyou_3R",
     "track": "sanyou",
     "race_num": "3R",
