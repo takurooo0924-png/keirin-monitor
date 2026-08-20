@@ -1,26 +1,5 @@
 [
   {
-    "id": "玉野_5R",
-    "track": "玉野",
-    "race_num": "5R",
-    "time_str": "17:36",
-    "deadline": "2026-08-20T17:36:00+09:00"
-  },
-  {
-    "id": "川崎_6R",
-    "track": "川崎",
-    "race_num": "6R",
-    "time_str": "17:48",
-    "deadline": "2026-08-20T17:48:00+09:00"
-  },
-  {
-    "id": "玉野_6R",
-    "track": "玉野",
-    "race_num": "6R",
-    "time_str": "18:00",
-    "deadline": "2026-08-20T18:00:00+09:00"
-  },
-  {
     "id": "川崎_7R",
     "track": "川崎",
     "race_num": "7R",
@@ -278,5 +257,12 @@
     "race_num": "9R",
     "time_str": "23:25",
     "deadline": "2026-08-20T23:25:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "23:38",
+    "deadline": "2026-08-20T23:38:00+09:00"
   }
 ]
