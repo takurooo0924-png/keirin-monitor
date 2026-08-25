@@ -7,74 +7,11 @@
     "deadline": "2026-08-26T10:54:00+09:00"
   },
   {
-    "id": "sanyou_2R",
-    "track": "sanyou",
-    "race_num": "2R",
-    "time_str": "11:19",
-    "deadline": "2026-08-26T11:19:00+09:00"
-  },
-  {
-    "id": "sanyou_3R",
-    "track": "sanyou",
-    "race_num": "3R",
-    "time_str": "11:45",
-    "deadline": "2026-08-26T11:45:00+09:00"
-  },
-  {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "12:13",
-    "deadline": "2026-08-26T12:13:00+09:00"
-  },
-  {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "12:41",
-    "deadline": "2026-08-26T12:41:00+09:00"
-  },
-  {
-    "id": "sanyou_6R",
-    "track": "sanyou",
-    "race_num": "6R",
-    "time_str": "13:11",
-    "deadline": "2026-08-26T13:11:00+09:00"
-  },
-  {
-    "id": "sanyou_7R",
-    "track": "sanyou",
-    "race_num": "7R",
-    "time_str": "13:41",
-    "deadline": "2026-08-26T13:41:00+09:00"
-  },
-  {
-    "id": "sanyou_8R",
-    "track": "sanyou",
-    "race_num": "8R",
-    "time_str": "14:12",
-    "deadline": "2026-08-26T14:12:00+09:00"
-  },
-  {
-    "id": "sanyou_9R",
-    "track": "sanyou",
-    "race_num": "9R",
-    "time_str": "14:44",
-    "deadline": "2026-08-26T14:44:00+09:00"
-  },
-  {
     "id": "伊勢崎_1R",
     "track": "伊勢崎",
     "race_num": "1R",
     "time_str": "14:58",
     "deadline": "2026-08-26T14:58:00+09:00"
-  },
-  {
-    "id": "sanyou_10R",
-    "track": "sanyou",
-    "race_num": "10R",
-    "time_str": "15:16",
-    "deadline": "2026-08-26T15:16:00+09:00"
   },
   {
     "id": "伊勢崎_2R",
@@ -91,25 +28,11 @@
     "deadline": "2026-08-26T15:48:00+09:00"
   },
   {
-    "id": "sanyou_11R",
-    "track": "sanyou",
-    "race_num": "11R",
-    "time_str": "15:54",
-    "deadline": "2026-08-26T15:54:00+09:00"
-  },
-  {
     "id": "伊勢崎_4R",
     "track": "伊勢崎",
     "race_num": "4R",
     "time_str": "16:16",
     "deadline": "2026-08-26T16:16:00+09:00"
-  },
-  {
-    "id": "sanyou_12R",
-    "track": "sanyou",
-    "race_num": "12R",
-    "time_str": "16:33",
-    "deadline": "2026-08-26T16:33:00+09:00"
   },
   {
     "id": "伊勢崎_5R",
@@ -152,19 +75,5 @@
     "race_num": "10R",
     "time_str": "19:19",
     "deadline": "2026-08-26T19:19:00+09:00"
-  },
-  {
-    "id": "伊勢崎_11R",
-    "track": "伊勢崎",
-    "race_num": "11R",
-    "time_str": "19:53",
-    "deadline": "2026-08-26T19:53:00+09:00"
-  },
-  {
-    "id": "伊勢崎_12R",
-    "track": "伊勢崎",
-    "race_num": "12R",
-    "time_str": "20:28",
-    "deadline": "2026-08-26T20:28:00+09:00"
   }
 ]
