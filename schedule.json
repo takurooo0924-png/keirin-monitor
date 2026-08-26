@@ -1,12 +1,5 @@
 [
   {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "10:54",
-    "deadline": "2026-08-27T10:54:00+09:00"
-  },
-  {
     "id": "sanyou_2R",
     "track": "sanyou",
     "race_num": "2R",
@@ -42,11 +35,39 @@
     "deadline": "2026-08-27T13:11:00+09:00"
   },
   {
+    "id": "sanyou_7R",
+    "track": "sanyou",
+    "race_num": "7R",
+    "time_str": "13:41",
+    "deadline": "2026-08-27T13:41:00+09:00"
+  },
+  {
+    "id": "sanyou_8R",
+    "track": "sanyou",
+    "race_num": "8R",
+    "time_str": "14:12",
+    "deadline": "2026-08-27T14:12:00+09:00"
+  },
+  {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "14:44",
+    "deadline": "2026-08-27T14:44:00+09:00"
+  },
+  {
     "id": "伊勢崎_1R",
     "track": "伊勢崎",
     "race_num": "1R",
     "time_str": "14:58",
     "deadline": "2026-08-27T14:58:00+09:00"
+  },
+  {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "15:16",
+    "deadline": "2026-08-27T15:16:00+09:00"
   },
   {
     "id": "伊勢崎_2R",
@@ -63,11 +84,25 @@
     "deadline": "2026-08-27T15:48:00+09:00"
   },
   {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "15:54",
+    "deadline": "2026-08-27T15:54:00+09:00"
+  },
+  {
     "id": "伊勢崎_4R",
     "track": "伊勢崎",
     "race_num": "4R",
     "time_str": "16:16",
     "deadline": "2026-08-27T16:16:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
+    "time_str": "16:33",
+    "deadline": "2026-08-27T16:33:00+09:00"
   },
   {
     "id": "伊勢崎_5R",
