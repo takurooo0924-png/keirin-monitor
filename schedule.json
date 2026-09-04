@@ -259,13 +259,6 @@
     "deadline": "2026-09-05T13:53:00+09:00"
   },
   {
-    "id": "浜松_9R",
-    "track": "浜松",
-    "race_num": "9R",
-    "time_str": "13:53",
-    "deadline": "2026-09-05T13:53:00+09:00"
-  },
-  {
     "id": "青森_8R",
     "track": "青森",
     "race_num": "8R",
@@ -357,13 +350,6 @@
     "deadline": "2026-09-05T16:01:00+09:00"
   },
   {
-    "id": "sanyou_4R",
-    "track": "sanyou",
-    "race_num": "4R",
-    "time_str": "16:02",
-    "deadline": "2026-09-05T16:02:00+09:00"
-  },
-  {
     "id": "豊橋_2R",
     "track": "豊橋",
     "race_num": "2R",
@@ -383,13 +369,6 @@
     "race_num": "2R",
     "time_str": "16:23",
     "deadline": "2026-09-05T16:23:00+09:00"
-  },
-  {
-    "id": "sanyou_5R",
-    "track": "sanyou",
-    "race_num": "5R",
-    "time_str": "16:31",
-    "deadline": "2026-09-05T16:31:00+09:00"
   },
   {
     "id": "豊橋_3R",
