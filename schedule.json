@@ -357,6 +357,13 @@
     "deadline": "2026-09-05T16:01:00+09:00"
   },
   {
+    "id": "sanyou_4R",
+    "track": "sanyou",
+    "race_num": "4R",
+    "time_str": "16:02",
+    "deadline": "2026-09-05T16:02:00+09:00"
+  },
+  {
     "id": "豊橋_2R",
     "track": "豊橋",
     "race_num": "2R",
@@ -376,6 +383,13 @@
     "race_num": "2R",
     "time_str": "16:23",
     "deadline": "2026-09-05T16:23:00+09:00"
+  },
+  {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "16:31",
+    "deadline": "2026-09-05T16:31:00+09:00"
   },
   {
     "id": "豊橋_3R",
