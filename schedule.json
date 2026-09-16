@@ -1,79 +1,149 @@
 [
   {
-    "id": "伊東_4R",
-    "track": "伊東",
+    "id": "川口_1R",
+    "track": "川口",
+    "race_num": "1R",
+    "time_str": "10:54",
+    "deadline": "2026-09-17T10:54:00+09:00"
+  },
+  {
+    "id": "川口_2R",
+    "track": "川口",
+    "race_num": "2R",
+    "time_str": "11:19",
+    "deadline": "2026-09-17T11:19:00+09:00"
+  },
+  {
+    "id": "川口_3R",
+    "track": "川口",
+    "race_num": "3R",
+    "time_str": "11:45",
+    "deadline": "2026-09-17T11:45:00+09:00"
+  },
+  {
+    "id": "川口_4R",
+    "track": "川口",
     "race_num": "4R",
-    "time_str": "21:45",
-    "deadline": "2026-09-16T21:45:00+09:00"
+    "time_str": "12:13",
+    "deadline": "2026-09-17T12:13:00+09:00"
   },
   {
-    "id": "青森_5R",
-    "track": "青森",
+    "id": "川口_5R",
+    "track": "川口",
     "race_num": "5R",
-    "time_str": "21:55",
-    "deadline": "2026-09-16T21:55:00+09:00"
+    "time_str": "12:41",
+    "deadline": "2026-09-17T12:41:00+09:00"
   },
   {
-    "id": "伊東_5R",
-    "track": "伊東",
+    "id": "川口_6R",
+    "track": "川口",
+    "race_num": "6R",
+    "time_str": "13:11",
+    "deadline": "2026-09-17T13:11:00+09:00"
+  },
+  {
+    "id": "川口_7R",
+    "track": "川口",
+    "race_num": "7R",
+    "time_str": "13:41",
+    "deadline": "2026-09-17T13:41:00+09:00"
+  },
+  {
+    "id": "川口_8R",
+    "track": "川口",
+    "race_num": "8R",
+    "time_str": "14:12",
+    "deadline": "2026-09-17T14:12:00+09:00"
+  },
+  {
+    "id": "川口_9R",
+    "track": "川口",
+    "race_num": "9R",
+    "time_str": "14:44",
+    "deadline": "2026-09-17T14:44:00+09:00"
+  },
+  {
+    "id": "川口_10R",
+    "track": "川口",
+    "race_num": "10R",
+    "time_str": "15:16",
+    "deadline": "2026-09-17T15:16:00+09:00"
+  },
+  {
+    "id": "川口_11R",
+    "track": "川口",
+    "race_num": "11R",
+    "time_str": "15:54",
+    "deadline": "2026-09-17T15:54:00+09:00"
+  },
+  {
+    "id": "川口_12R",
+    "track": "川口",
+    "race_num": "12R",
+    "time_str": "16:33",
+    "deadline": "2026-09-17T16:33:00+09:00"
+  },
+  {
+    "id": "sanyou_1R",
+    "track": "sanyou",
+    "race_num": "1R",
+    "time_str": "19:51",
+    "deadline": "2026-09-17T19:51:00+09:00"
+  },
+  {
+    "id": "sanyou_2R",
+    "track": "sanyou",
+    "race_num": "2R",
+    "time_str": "20:18",
+    "deadline": "2026-09-17T20:18:00+09:00"
+  },
+  {
+    "id": "sanyou_3R",
+    "track": "sanyou",
+    "race_num": "3R",
+    "time_str": "20:46",
+    "deadline": "2026-09-17T20:46:00+09:00"
+  },
+  {
+    "id": "sanyou_4R",
+    "track": "sanyou",
+    "race_num": "4R",
+    "time_str": "21:14",
+    "deadline": "2026-09-17T21:14:00+09:00"
+  },
+  {
+    "id": "sanyou_5R",
+    "track": "sanyou",
     "race_num": "5R",
-    "time_str": "22:05",
-    "deadline": "2026-09-16T22:05:00+09:00"
+    "time_str": "21:42",
+    "deadline": "2026-09-17T21:42:00+09:00"
   },
   {
-    "id": "青森_6R",
-    "track": "青森",
+    "id": "sanyou_6R",
+    "track": "sanyou",
     "race_num": "6R",
-    "time_str": "22:15",
-    "deadline": "2026-09-16T22:15:00+09:00"
+    "time_str": "22:10",
+    "deadline": "2026-09-17T22:10:00+09:00"
   },
   {
-    "id": "伊東_6R",
-    "track": "伊東",
-    "race_num": "6R",
-    "time_str": "22:25",
-    "deadline": "2026-09-16T22:25:00+09:00"
-  },
-  {
-    "id": "青森_7R",
-    "track": "青森",
+    "id": "sanyou_7R",
+    "track": "sanyou",
     "race_num": "7R",
-    "time_str": "22:35",
-    "deadline": "2026-09-16T22:35:00+09:00"
+    "time_str": "22:38",
+    "deadline": "2026-09-17T22:38:00+09:00"
   },
   {
-    "id": "伊東_7R",
-    "track": "伊東",
-    "race_num": "7R",
-    "time_str": "22:45",
-    "deadline": "2026-09-16T22:45:00+09:00"
-  },
-  {
-    "id": "青森_8R",
-    "track": "青森",
+    "id": "sanyou_8R",
+    "track": "sanyou",
     "race_num": "8R",
-    "time_str": "22:55",
-    "deadline": "2026-09-16T22:55:00+09:00"
+    "time_str": "23:06",
+    "deadline": "2026-09-17T23:06:00+09:00"
   },
   {
-    "id": "伊東_8R",
-    "track": "伊東",
-    "race_num": "8R",
-    "time_str": "23:05",
-    "deadline": "2026-09-16T23:05:00+09:00"
-  },
-  {
-    "id": "青森_9R",
-    "track": "青森",
+    "id": "sanyou_9R",
+    "track": "sanyou",
     "race_num": "9R",
-    "time_str": "23:15",
-    "deadline": "2026-09-16T23:15:00+09:00"
-  },
-  {
-    "id": "伊東_9R",
-    "track": "伊東",
-    "race_num": "9R",
-    "time_str": "23:25",
-    "deadline": "2026-09-16T23:25:00+09:00"
+    "time_str": "23:38",
+    "deadline": "2026-09-17T23:38:00+09:00"
   }
 ]
