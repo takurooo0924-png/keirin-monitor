@@ -343,6 +343,13 @@
     "deadline": "2026-09-28T15:15:00+09:00"
   },
   {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "15:16",
+    "deadline": "2026-09-28T15:16:00+09:00"
+  },
+  {
     "id": "武雄_11R",
     "track": "武雄",
     "race_num": "11R",
@@ -392,6 +399,13 @@
     "deadline": "2026-09-28T15:51:00+09:00"
   },
   {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "15:54",
+    "deadline": "2026-09-28T15:54:00+09:00"
+  },
+  {
     "id": "平塚_2R",
     "track": "平塚",
     "race_num": "2R",
@@ -432,6 +446,13 @@
     "race_num": "3R",
     "time_str": "16:27",
     "deadline": "2026-09-28T16:27:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
+    "time_str": "16:33",
+    "deadline": "2026-09-28T16:33:00+09:00"
   },
   {
     "id": "岐阜_4R",
