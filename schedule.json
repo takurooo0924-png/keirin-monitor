@@ -385,6 +385,13 @@
     "deadline": "2026-10-18T16:57:00+09:00"
   },
   {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "17:08",
+    "deadline": "2026-10-18T17:08:00+09:00"
+  },
+  {
     "id": "四日市_5R",
     "track": "四日市",
     "race_num": "5R",
@@ -397,6 +404,13 @@
     "race_num": "6R",
     "time_str": "17:25",
     "deadline": "2026-10-18T17:25:00+09:00"
+  },
+  {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "17:36",
+    "deadline": "2026-10-18T17:36:00+09:00"
   },
   {
     "id": "四日市_6R",
@@ -413,6 +427,13 @@
     "deadline": "2026-10-18T17:54:00+09:00"
   },
   {
+    "id": "sanyou_7R",
+    "track": "sanyou",
+    "race_num": "7R",
+    "time_str": "18:04",
+    "deadline": "2026-10-18T18:04:00+09:00"
+  },
+  {
     "id": "四日市_7R",
     "track": "四日市",
     "race_num": "7R",
@@ -425,6 +446,13 @@
     "race_num": "8R",
     "time_str": "18:24",
     "deadline": "2026-10-18T18:24:00+09:00"
+  },
+  {
+    "id": "sanyou_8R",
+    "track": "sanyou",
+    "race_num": "8R",
+    "time_str": "18:32",
+    "deadline": "2026-10-18T18:32:00+09:00"
   },
   {
     "id": "四日市_8R",
@@ -441,6 +469,13 @@
     "deadline": "2026-10-18T18:54:00+09:00"
   },
   {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "19:03",
+    "deadline": "2026-10-18T19:03:00+09:00"
+  },
+  {
     "id": "四日市_9R",
     "track": "四日市",
     "race_num": "9R",
@@ -455,6 +490,13 @@
     "deadline": "2026-10-18T19:24:00+09:00"
   },
   {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "19:35",
+    "deadline": "2026-10-18T19:35:00+09:00"
+  },
+  {
     "id": "四日市_10R",
     "track": "四日市",
     "race_num": "10R",
@@ -467,6 +509,13 @@
     "race_num": "11R",
     "time_str": "19:54",
     "deadline": "2026-10-18T19:54:00+09:00"
+  },
+  {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "20:08",
+    "deadline": "2026-10-18T20:08:00+09:00"
   },
   {
     "id": "四日市_11R",
@@ -488,6 +537,13 @@
     "race_num": "1R",
     "time_str": "20:35",
     "deadline": "2026-10-18T20:35:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
+    "time_str": "20:43",
+    "deadline": "2026-10-18T20:43:00+09:00"
   },
   {
     "id": "広島_1R",
