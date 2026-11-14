@@ -1,131 +1,5 @@
 [
   {
-    "id": "武雄_1R",
-    "track": "武雄",
-    "race_num": "1R",
-    "time_str": "08:45",
-    "deadline": "2026-11-14T08:45:00+09:00"
-  },
-  {
-    "id": "松戸_1R",
-    "track": "松戸",
-    "race_num": "1R",
-    "time_str": "08:55",
-    "deadline": "2026-11-14T08:55:00+09:00"
-  },
-  {
-    "id": "武雄_2R",
-    "track": "武雄",
-    "race_num": "2R",
-    "time_str": "09:05",
-    "deadline": "2026-11-14T09:05:00+09:00"
-  },
-  {
-    "id": "松戸_2R",
-    "track": "松戸",
-    "race_num": "2R",
-    "time_str": "09:15",
-    "deadline": "2026-11-14T09:15:00+09:00"
-  },
-  {
-    "id": "武雄_3R",
-    "track": "武雄",
-    "race_num": "3R",
-    "time_str": "09:25",
-    "deadline": "2026-11-14T09:25:00+09:00"
-  },
-  {
-    "id": "松戸_3R",
-    "track": "松戸",
-    "race_num": "3R",
-    "time_str": "09:35",
-    "deadline": "2026-11-14T09:35:00+09:00"
-  },
-  {
-    "id": "武雄_4R",
-    "track": "武雄",
-    "race_num": "4R",
-    "time_str": "09:45",
-    "deadline": "2026-11-14T09:45:00+09:00"
-  },
-  {
-    "id": "松戸_4R",
-    "track": "松戸",
-    "race_num": "4R",
-    "time_str": "09:55",
-    "deadline": "2026-11-14T09:55:00+09:00"
-  },
-  {
-    "id": "武雄_5R",
-    "track": "武雄",
-    "race_num": "5R",
-    "time_str": "10:05",
-    "deadline": "2026-11-14T10:05:00+09:00"
-  },
-  {
-    "id": "松戸_5R",
-    "track": "松戸",
-    "race_num": "5R",
-    "time_str": "10:15",
-    "deadline": "2026-11-14T10:15:00+09:00"
-  },
-  {
-    "id": "武雄_6R",
-    "track": "武雄",
-    "race_num": "6R",
-    "time_str": "10:25",
-    "deadline": "2026-11-14T10:25:00+09:00"
-  },
-  {
-    "id": "松戸_6R",
-    "track": "松戸",
-    "race_num": "6R",
-    "time_str": "10:35",
-    "deadline": "2026-11-14T10:35:00+09:00"
-  },
-  {
-    "id": "sanyou_1R",
-    "track": "sanyou",
-    "race_num": "1R",
-    "time_str": "10:39",
-    "deadline": "2026-11-14T10:39:00+09:00"
-  },
-  {
-    "id": "武雄_7R",
-    "track": "武雄",
-    "race_num": "7R",
-    "time_str": "10:45",
-    "deadline": "2026-11-14T10:45:00+09:00"
-  },
-  {
-    "id": "松戸_7R",
-    "track": "松戸",
-    "race_num": "7R",
-    "time_str": "10:55",
-    "deadline": "2026-11-14T10:55:00+09:00"
-  },
-  {
-    "id": "立川_1R",
-    "track": "立川",
-    "race_num": "1R",
-    "time_str": "11:00",
-    "deadline": "2026-11-14T11:00:00+09:00"
-  },
-  {
-    "id": "sanyou_2R",
-    "track": "sanyou",
-    "race_num": "2R",
-    "time_str": "11:09",
-    "deadline": "2026-11-14T11:09:00+09:00"
-  },
-  {
-    "id": "立川_2R",
-    "track": "立川",
-    "race_num": "2R",
-    "time_str": "11:28",
-    "deadline": "2026-11-14T11:28:00+09:00"
-  },
-  {
     "id": "sanyou_3R",
     "track": "sanyou",
     "race_num": "3R",
@@ -140,11 +14,25 @@
     "deadline": "2026-11-14T11:56:00+09:00"
   },
   {
+    "id": "sanyou_4R",
+    "track": "sanyou",
+    "race_num": "4R",
+    "time_str": "12:10",
+    "deadline": "2026-11-14T12:10:00+09:00"
+  },
+  {
     "id": "立川_4R",
     "track": "立川",
     "race_num": "4R",
     "time_str": "12:24",
     "deadline": "2026-11-14T12:24:00+09:00"
+  },
+  {
+    "id": "sanyou_5R",
+    "track": "sanyou",
+    "race_num": "5R",
+    "time_str": "12:41",
+    "deadline": "2026-11-14T12:41:00+09:00"
   },
   {
     "id": "立川_5R",
@@ -154,11 +42,25 @@
     "deadline": "2026-11-14T12:52:00+09:00"
   },
   {
+    "id": "sanyou_6R",
+    "track": "sanyou",
+    "race_num": "6R",
+    "time_str": "13:12",
+    "deadline": "2026-11-14T13:12:00+09:00"
+  },
+  {
     "id": "立川_6R",
     "track": "立川",
     "race_num": "6R",
     "time_str": "13:20",
     "deadline": "2026-11-14T13:20:00+09:00"
+  },
+  {
+    "id": "sanyou_7R",
+    "track": "sanyou",
+    "race_num": "7R",
+    "time_str": "13:44",
+    "deadline": "2026-11-14T13:44:00+09:00"
   },
   {
     "id": "立川_7R",
@@ -175,6 +77,13 @@
     "deadline": "2026-11-14T14:16:00+09:00"
   },
   {
+    "id": "sanyou_8R",
+    "track": "sanyou",
+    "race_num": "8R",
+    "time_str": "14:16",
+    "deadline": "2026-11-14T14:16:00+09:00"
+  },
+  {
     "id": "立川_9R",
     "track": "立川",
     "race_num": "9R",
@@ -182,11 +91,25 @@
     "deadline": "2026-11-14T14:45:00+09:00"
   },
   {
+    "id": "sanyou_9R",
+    "track": "sanyou",
+    "race_num": "9R",
+    "time_str": "14:51",
+    "deadline": "2026-11-14T14:51:00+09:00"
+  },
+  {
     "id": "立川_10R",
     "track": "立川",
     "race_num": "10R",
     "time_str": "15:14",
     "deadline": "2026-11-14T15:14:00+09:00"
+  },
+  {
+    "id": "sanyou_10R",
+    "track": "sanyou",
+    "race_num": "10R",
+    "time_str": "15:26",
+    "deadline": "2026-11-14T15:26:00+09:00"
   },
   {
     "id": "立川_11R",
@@ -201,6 +124,13 @@
     "race_num": "1R",
     "time_str": "15:50",
     "deadline": "2026-11-14T15:50:00+09:00"
+  },
+  {
+    "id": "sanyou_11R",
+    "track": "sanyou",
+    "race_num": "11R",
+    "time_str": "16:02",
+    "deadline": "2026-11-14T16:02:00+09:00"
   },
   {
     "id": "玉野_1R",
@@ -234,6 +164,13 @@
     "id": "川崎_3R",
     "track": "川崎",
     "race_num": "3R",
+    "time_str": "16:38",
+    "deadline": "2026-11-14T16:38:00+09:00"
+  },
+  {
+    "id": "sanyou_12R",
+    "track": "sanyou",
+    "race_num": "12R",
     "time_str": "16:38",
     "deadline": "2026-11-14T16:38:00+09:00"
   },
